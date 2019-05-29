@@ -1,1 +1,1 @@
-# trinity
+# The Order of Trinity
