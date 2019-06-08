@@ -1,4 +1,4 @@
-from flask import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from flask import render_template, url_for,Flask
 
 app = Flask(__name__)

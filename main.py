@@ -3,6 +3,7 @@ from init import app, db
 import os
 from sqlalchemy.orm import Session
 from forms import RegistrationForm
+from models import User
 
 '''posts = [
     {
@@ -36,10 +37,11 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+
         user = User(username = form.username.data,email=form.email.data,password=form.password.data)
         db.session.add(user)
         db.session.commit()
+        print("validated")
 
         '''flash(f'Account created!', 'success')'''
-        return redirect(url_for('home'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('temp.html', title='Register', form=form)
