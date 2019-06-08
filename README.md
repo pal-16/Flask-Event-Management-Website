@@ -1,3 +1,1 @@
-# The Order of Trinity
-#palak sarakshi mounil
-#management
+Time pass band karke kaam pe lago
