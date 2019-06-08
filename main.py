@@ -1,5 +1,8 @@
 from flask import Flask, render_template, url_for
-app = Flask(__name__)
+from init import app, db
+import os
+from sqlalchemy.orm import Session
+from forms import RegistrationForm
 
 '''posts = [
     {
@@ -33,10 +36,10 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
+        user = User(username = form.username.data,email=form.email.data,password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+
+        '''flash(f'Account created!', 'success')'''
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

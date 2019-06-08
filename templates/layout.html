@@ -31,7 +31,6 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
               <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
             </div>
           </div>
@@ -50,7 +49,7 @@
               {% endfor %}
             {% endif %}
           {% endwith %}
-          {% block content %}{% endblock %}
+          
         </div>
         <div class="col-md-4">
           <div class="content-section">
