@@ -36,9 +36,6 @@ def usermatch():
 def loginn():
     
       form = LoginForm()
-      if current_user.is_authenticated:
-        return redirect(url_for('home'))
-           
       return render_template('loginn.html', title='loginn', form=form)
 
 

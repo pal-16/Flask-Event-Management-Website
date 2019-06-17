@@ -20,29 +20,29 @@
 				</div>
 				
 				<div>
-					{{ form.spaceused.label}}
-					{% if form.spaceused.errors %}
-						{{ form.spaceused}}
+					{{ form.requirement.label}}
+					{% if form.requirement.errors %}
+						{{ form.requirement}}
 						<div class="invalid-feedback">
-							{% for error in form.spaceused.errors %}
+							{% for error in form.requirement.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.spaceused}}
+						{{ form.requirement}}
 					{% endif %}
 				</div>
 				<div>
-					{{ form.location.label}}
-					{% if form.location.errors %}
-						{{ form.location}}
+					{{ form.occasion.label}}
+					{% if form.occasion.errors %}
+						{{ form.occasion}}
 						<div class="invalid-feedback">
-							{% for error in form.location.errors %}
+							{% for error in form.occasion.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.location}}
+						{{ form.occasion}}
 					{% endif %}
 				</div>
 				

@@ -83,7 +83,45 @@
 						{{ form.price}}
 					{% endif %}
 				</div>
-				
+				<div>
+					{{ form.contact.label}}
+					{% if form.contact.errors %}
+						{{ form.price}}
+						<div class="invalid-feedback">
+							{% for error in form.contact.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.contact}}
+					{% endif %}
+				</div>
+				<div>
+					{{ form.address.label}}
+					{% if form.address.errors %}
+						{{ form.address}}
+						<div class="invalid-feedback">
+							{% for error in form.address.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.address}}
+					{% endif %}
+				</div>
+				<div>
+					{{ form.details.label}}
+					{% if form.details.errors %}
+						{{ form.details}}
+						<div class="invalid-feedback">
+							{% for error in form.details.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.details}}
+					{% endif %}
+				</div>
 				
 			</fieldset>
 			 <div class="form-group">

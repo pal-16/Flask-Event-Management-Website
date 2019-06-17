@@ -17,8 +17,8 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    '''password = PasswordField('Password', validators=[DataRequired()])
-                remember = BooleanField('Remember Me')'''
+    password = PasswordField('Password', validators=[DataRequired()])
+            
     submit = SubmitField('Login')
 
 class RegistrationForm(FlaskForm):
@@ -29,10 +29,14 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     
-    spaceused  = StringField('space used for')
-    location  = StringField('location')
-    price  = StringField('price')
-    details = StringField('details')
+    spaceused  = StringField('space used for', validators=[DataRequired()])
+    location  = StringField('location', validators=[DataRequired()])
+    price  = StringField('price', validators=[DataRequired()])
+    details = StringField('details', validators=[DataRequired()])
+    contact  = StringField('contact', validators=[DataRequired()])
+    address  = StringField('price', validators=[DataRequired()])
+    knownfor = StringField('knownfor', validators=[DataRequired()])
+
 
     submit = SubmitField('Sign Up')
 
@@ -41,12 +45,15 @@ class uRegistrationForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
    
-    spaceused  = StringField('space used for')
-    location  = StringField('location')
+    requirement  = StringField('requirement',
+                        validators=[DataRequired()])
+    occasion  = StringField('occasion',
+                        validators=[DataRequired()])
   
    
 
     submit = SubmitField('see the match')
+                       
 
     
 

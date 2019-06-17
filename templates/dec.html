@@ -4,7 +4,19 @@
 		<div>
 			<form method="POST" action="/register">
 			{{ form.hidden_tag() }}
-				
+				<div>
+					{{ form.name.label}}
+					{% if form.name.errors %}
+						{{ form.name}}
+						<div class="invalid-feedback">
+							{% for error in form.name.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.name}}
+					{% endif %}
+				</div>
 				<div>
 					{{ form.email.label}}
 					{% if form.email.errors %}
@@ -58,16 +70,16 @@
 					{% endif %}
 				</div>
 				<div>
-					{{ form.location.label}}
-					{% if form.location.errors %}
-						{{ form.location}}
+					{{ form.spaceused.label}}
+					{% if form.spaceused.errors %}
+						{{ form.spaceused}}
 						<div class="invalid-feedback">
-							{% for error in form.location.errors %}
+							{% for error in form.spaceused.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.location}}
+						{{ form.spaceused}}
 					{% endif %}
 				</div>
 				<div>
@@ -81,6 +93,19 @@
 						</div>
 					{% else %}
 						{{ form.price}}
+					{% endif %}
+				</div>
+				<div>
+					{{ form.contact.label}}
+					{% if form.contact.errors %}
+						{{ form.price}}
+						<div class="invalid-feedback">
+							{% for error in form.contact.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.contact}}
 					{% endif %}
 				</div>
 				

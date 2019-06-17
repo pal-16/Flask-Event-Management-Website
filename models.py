@@ -12,9 +12,12 @@ class User(db.Model):
     location = db.Column(db.String(120), unique=True, nullable=False)
     price = db.Column(db.String(120), unique=True, nullable=False)
     details = db.Column(db.String(120), unique=True, nullable=False)
+    address = db.Column(db.String(120), unique=True, nullable=False)
+    contact = db.Column(db.String(120), unique=True, nullable=False)
+    knownfor = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.image_file}', '{self.spcaeused}', '{self.location}', '{self.price}')"
+        return f"User('{self.username}', '{self.email}', '{self.image_file}', '{self.spcaeused}', '{self.location}', '{self.price}', '{self.address}', '{self.contact}', '{self.knownfor}')"
 
 
 '''class Post(db.Model):
