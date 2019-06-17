@@ -18,19 +18,6 @@
 						{{ form.email}}
 					{% endif %}
 				</div>
-				
-				<div>
-					{{ form.requirement.label}}
-					{% if form.requirement.errors %}
-						{{ form.requirement}}
-						<div class="invalid-feedback">
-							{% for error in form.requirement.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.requirement}}
-					{% endif %}
 				</div>
 				<div>
 					{{ form.occasion.label}}
@@ -45,6 +32,18 @@
 						{{ form.occasion}}
 					{% endif %}
 				</div>
+				
+				<div>
+					
+					<p>what is your requirement?<p>
+                    <form action="/action_page.php" method="get">
+					  <input type="checkbox" name="category" value="halls"> halls<br>
+					  <input type="checkbox" name="category" value="decorator">decorators<br>
+					  <input type="checkbox" name="category" value="cateror">caterors<br>
+					
+					</form>
+                </div>
+				
 				
 				
 			</fieldset>
