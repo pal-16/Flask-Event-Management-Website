@@ -1,0 +1,21 @@
+<html>
+<body>
+		
+		<div>
+			<form method="POST" action="/loginn">
+			{{ form.hidden_tag() }}
+				
+				<div>
+					{{ form.email.label}}
+					{% if form.email.errors %}
+						{{ form.email}}
+						<div class="invalid-feedback">
+							{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.email}}
+					{% endif %}
+</body>
+</html>
