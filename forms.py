@@ -35,5 +35,18 @@ class RegistrationForm(FlaskForm):
     details = StringField('details')
 
     submit = SubmitField('Sign Up')
+
+class uRegistrationForm(FlaskForm):
+    
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+   
+    spaceused  = StringField('space used for')
+    location  = StringField('location')
+  
+   
+
+    submit = SubmitField('see the match')
+
     
 

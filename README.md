@@ -1,1 +1,3 @@
-Time pass band karke kaam pe lago
+MANAGING EVENT MANAGEMENT
+
+FAITH IT IS.
