@@ -49,7 +49,7 @@ def uregister():
     form = RegistrationForm()
     if form.validate_on_submit():
 
-        user = User(username = form.username.data,email=form.email.data,password=form.password.data,spaceused=form.spaceused.data,location=form.location.data,price=form.price.data)
+        user = User(name = form.name.data,email=form.email.data,password=form.password.data,spaceused=form.spaceused.data,location=form.location.data,price=form.price.data,contact=form.contact.data,address=form.address.data)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -61,7 +61,7 @@ def pregister():
     form = RegistrationForm()
     if form.validate_on_submit():
 
-        user = User(username = form.username.data,email=form.email.data,password=form.password.data,details=form.details.data,location=form.location.data,price=form.price.data)
+        user = User(name = form.name.data,email=form.email.data,password=form.password.data,details=form.details.data,spaceused=form.spaceused.data,price=form.price.data,contact=form.contact.data)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -73,7 +73,7 @@ def qregister():
     form = RegistrationForm()
     if form.validate_on_submit():
            
-        user = User(username = form.username.data,email=form.email.data,password=form.password.data,spaceused=form.spaceused.data,location=form.location.data,price=form.price.data)
+        user = User(name=form.name.data,email=form.email.data,password=form.password.data,details=form.details.data,knownfor=form.spaceused.data,price=form.knownfor.data,contact=form.contact.data)
         db.session.add(user)
         db.session.commit()
         print("validated")

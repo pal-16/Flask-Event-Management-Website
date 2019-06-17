@@ -34,7 +34,7 @@ class RegistrationForm(FlaskForm):
     price  = StringField('price', validators=[DataRequired()])
     details = StringField('details', validators=[DataRequired()])
     contact  = StringField('contact', validators=[DataRequired()])
-    address  = StringField('price', validators=[DataRequired()])
+    address  = StringField('address', validators=[DataRequired()])
     knownfor = StringField('knownfor', validators=[DataRequired()])
 
 
