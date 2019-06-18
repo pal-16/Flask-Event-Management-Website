@@ -23,14 +23,11 @@ from models import User
 
 '''
 @app.route("/")
-@app.route("/home")
-def home():
-    return render_template('home.html')
 
-@app.route("/usermatch",methods=['GET', 'POST'])
-def usermatch():
+@app.route("/home",methods=['GET', 'POST'])
+def home():
     form = uRegistrationForm()
-    return render_template('usermatch.html', title='usermatch', form=form)
+    return render_template('usermatch.html', title='home', form=form)
     
 @app.route('/index')
 def index():
