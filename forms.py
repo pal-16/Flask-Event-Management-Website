@@ -22,20 +22,20 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class RegistrationForm(FlaskForm):
-    name = StringField('name')
-    email = StringField('Email',
-                        validators=[DataRequired(), Email()])
+    name = StringField('name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
-                                     validators=[DataRequired(), EqualTo('password')])
+                                     validators=[EqualTo('password')])
     
-    spaceused  = StringField('space used for', validators=[DataRequired()])
-    location  = StringField('location', validators=[DataRequired()])
+    spaceused  = StringField('space used for')
+    Location  = StringField('location')
     price  = StringField('price', validators=[DataRequired()])
-    details = StringField('details', validators=[DataRequired()])
+   
     contact  = StringField('contact', validators=[DataRequired()])
-    address  = StringField('address', validators=[DataRequired()])
-    knownfor = StringField('knownfor', validators=[DataRequired()])
+    address  = StringField('address')
+    details = StringField('details', validators=[DataRequired()])
+  
 
 
     submit = SubmitField('Sign Up')

@@ -3,31 +3,18 @@ from init import db
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
-    '''username = db.Column(db.String(20), unique=True, nullable=False)'''
+    name = db.Column(db.String(20), unique=True, nullable=False) 
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
-    posts = db.relationship('Post', backref='author', lazy=True)
-    spaceused = db.Column(db.String(120), unique=True, nullable=False)
-    location = db.Column(db.String(120), unique=True, nullable=False)
-    price = db.Column(db.String(120), unique=True, nullable=False)
+    spaceused = db.Column(db.String(120))
+    Location = db.Column(db.String(120)) 
+    price = db.Column(db.Integer, unique=True, nullable=False)
+    address = db.Column(db.String(120))
+    contact = db.Column(db.Integer, unique=True, nullable=False)
     details = db.Column(db.String(120), unique=True, nullable=False)
-    address = db.Column(db.String(120), unique=True, nullable=False)
-    contact = db.Column(db.String(120), unique=True, nullable=False)
-    knownfor = db.Column(db.String(120), unique=True, nullable=False)
+    
 
     def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.image_file}', '{self.spcaeused}', '{self.location}', '{self.price}', '{self.address}', '{self.contact}', '{self.knownfor}')"
+        return f"User('{self.name}', '{self.email}', '{self.spaceused}', '{self.Location}', '{self.price}', '{self.address}', '{self.contact}', '{self.details}')"
 
 
-'''class Post(db.Model):
-    __tablename__ = "posts"
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    #date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
-'''
