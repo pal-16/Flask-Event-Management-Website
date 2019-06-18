@@ -35,7 +35,7 @@ class RegistrationForm(FlaskForm):
     contact  = StringField('contact', validators=[DataRequired()])
     address  = StringField('address')
     details = StringField('details', validators=[DataRequired()])
-  
+    knownfor = StringField('knownfor')
 
 
     submit = SubmitField('Sign Up')

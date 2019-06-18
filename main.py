@@ -57,12 +57,12 @@ def uregister():
         db.session.add(user)
         db.session.commit()
         print("validated")
-        flash('You were successfully logged in')
+        flash('You were successfully signed up')
         return redirect(url_for('index'))
         
     return render_template('temp.html', title='Register', form=form)
       
-'''@app.route("/pregister", methods=['GET', 'POST'])
+@app.route("/pregister", methods=['GET', 'POST'])
 def pregister():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -70,8 +70,10 @@ def pregister():
         user = User(name = form.name.data,email=form.email.data,password=form.password.data,details=form.details.data,knownfor=form.knownfor.data,price=form.price.data,contact=form.contact.data)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('loginn'))
+        print("validated")
+        flash('You were successfully signed up')
+        return redirect(url_for('index'))
+        
     return render_template('dec.html', title='decregister', form=form)
 
 @app.route("/qregister", methods=['GET', 'POST'])
@@ -79,9 +81,13 @@ def qregister():
     form = RegistrationForm()
     if form.validate_on_submit():
            
-        user = User(name=form.name.data,email=form.email.data,password=form.password.data,details=form.details.data,knownfor=form.spaceused.data,price=form.knownfor.data,contact=form.contact.data)
+        user = User(name=form.name.data,email=form.email.data,password=form.password.data,details=form.details.data,knownfor=form.knownfor.data,price=form.knownfor.data,contact=form.contact.data)
         db.session.add(user)
         db.session.commit()
         print("validated")
-    return render_template('cateror.html', title='catRegister', form=form)'''
+        print("validated")
+        flash('You were successfully signed up')
+        return redirect(url_for('index'))
+
+    return render_template('cateror.html', title='catRegister', form=form)
            
