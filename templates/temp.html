@@ -57,29 +57,29 @@
 					{% endif %}
 				</div>
 				<div>
-					{{ form.spaceused.label}}
-					{% if form.spaceused.errors %}
-						{{ form.spaceused}}
+					{{ form.occasion.label}}
+					{% if form.occasion.errors %}
+						{{ form.occasion}}
 						<div class="invalid-feedback">
-							{% for error in form.spaceused.errors %}
+							{% for error in form.occasion.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.spaceused}}
+						{{ form.occasion}}
 					{% endif %}
 				</div>
 				<div>
-					{{ form.Location.label}}
-					{% if form.Location.errors %}
-						{{ form.Location}}
+					{{ form.location.label}}
+					{% if form.location.errors %}
+						{{ form.location}}
 						<div class="invalid-feedback">
-							{% for error in form.Location.errors %}
+							{% for error in form.location.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.Location}}
+						{{ form.location}}
 					{% endif %}
 				</div>
 				<div>
@@ -122,20 +122,19 @@
 					{% endif %}
 				</div>
 				<div>
-					{{ form.details.label}}
-					{% if form.details.errors %}
-						{{ form.details}}
+					{{ form.requirement.label}}
+					{% if form.requirement.errors %}
+						{{ form.requirement}}
 						<div class="invalid-feedback">
-							{% for error in form.details.errors %}
+							{% for error in form.requirement.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.details}}
+						{{ form.requirement}}
 					{% endif %}
 				</div>
-				
-			</fieldset>
+					</fieldset>
 			 <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>

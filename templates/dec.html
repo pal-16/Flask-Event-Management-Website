@@ -57,29 +57,16 @@
 					{% endif %}
 				</div>
 				<div>
-					{{ form.details.label}}
-					{% if form.details.errors %}
-						{{ form.details}}
+					{{ form.requirement.label}}
+					{% if form.requirement.errors %}
+						{{ form.requirement}}
 						<div class="invalid-feedback">
-							{% for error in form.details.errors %}
+							{% for error in form.requirement.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.details}}
-					{% endif %}
-				</div>
-				<div>
-					{{ form.knownfor.label}}
-					{% if form.knownfor.errors %}
-						{{ form.knownfor}}
-						<div class="invalid-feedback">
-							{% for error in form.knownfor.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.knownfor}}
+						{{ form.requirement}}
 					{% endif %}
 				</div>
 				<div>

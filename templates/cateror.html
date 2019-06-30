@@ -57,16 +57,16 @@
 					{% endif %}
 				</div>
 				<div>
-					{{ form.knownfor.label}}
-					{% if form.knownfor.errors %}
-						{{ form.knownfor}}
+					{{ form.requirement.label}}
+					{% if form.requirement.errors %}
+						{{ form.requirement}}
 						<div class="invalid-feedback">
-							{% for error in form.knownfor.errors %}
+							{% for error in form.requirement.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.knownfor}}
+						{{ form.requirement}}
 					{% endif %}
 				</div>
 				
@@ -83,19 +83,7 @@
 						{{ form.contact}}
 					{% endif %}
 				</div>
-				<div>
-					{{ form.details.label}}
-					{% if form.details.errors %}
-						{{ form.details}}
-						<div class="invalid-feedback">
-							{% for error in form.details.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.details}}
-					{% endif %}
-				</div>
+				
 				<div>
 					{{ form.price.label}}
 					{% if form.price.errors %}
@@ -125,4 +113,3 @@
 			
 </body>
 </html>
-
