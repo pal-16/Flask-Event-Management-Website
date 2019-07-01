@@ -51,7 +51,7 @@ def findUser(email):
 @app.route('/find',methods=['GET', 'POST'])
 def find():
     form = uRegistrationForm()
-    user = User.query.filter_by(location=form.location.data,price=form.price.data,requirement=form.requirement.data).first()
+    user = User.query.filter_by(location=form.location.data,price=form.price.data,requirement=form.requirement.data)
     if user :                     
       print("success2")                                                    # this part is getting executed!!!!!
     return render_template('detail.html',title='match',form=form,user=user)
