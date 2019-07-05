@@ -2,7 +2,7 @@
 <body>
 		
 		<div>
-			<form method="POST" action="/uregister"> 
+			<form method="POST" action="/hregister"> 
 			{{ form.hidden_tag() }}
 				<div>
 					{{ form.name.label}}
@@ -69,6 +69,16 @@
 						{{ form.occasion}}
 					{% endif %}
 				</div>
+				 <div class="form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+          
 				<div>
 					{{ form.location.label}}
 					{% if form.location.errors %}
@@ -142,7 +152,7 @@
     </div>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="loginn">Sign In</a>
+            Already Have An Account? <a class="ml-2" href="login">Sign In</a>
         </small>
     </div>
 			

@@ -1,6 +1,12 @@
-from init import db
+from init import db,login_manager
+from flask_login import UserMixin
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+class User(db.Model,UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), unique=True, nullable=False) 
@@ -12,6 +18,7 @@ class User(db.Model):
     address = db.Column(db.String(120))
     contact = db.Column(db.Integer, unique=True)
     requirement=db.Column(db.String(80))
+    image_file=db.Column(db.String(20),nullable=False,default='default.jpg')
    
     
 
