@@ -58,6 +58,10 @@ class uRegistrationForm(FlaskForm):
    
 
     submit = SubmitField('see the match')
+
+    
+
+   
                        
 class UpdateAccountForm(FlaskForm):
     name = StringField('Username',

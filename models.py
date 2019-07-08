@@ -18,7 +18,7 @@ class User(db.Model,UserMixin):
     address = db.Column(db.String(120))
     contact = db.Column(db.Integer, unique=True)
     requirement=db.Column(db.String(80))
-    image_file=db.Column(db.String(20),nullable=False,default='default.jpg')
+    image_file=db.Column(db.String(20),nullable=False,default='default.jpg') 
    
     
 
