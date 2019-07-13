@@ -18,6 +18,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <style type="text/css">
  .bg-steel {
@@ -28,7 +30,9 @@
   background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
   background-size: cover;
  }
-</style>z    {% if title %}
+ .mySlides {display:none;}
+</style>  
+  {% if title %}
         <title>{{ title }}</title>
     {% else %}
         <title>site</title>
@@ -59,25 +63,41 @@
         </div>
       </nav>
     </header>
-    <div>
-			<form method="POST" action="{{url_for('find')}}">
+    
+        
+          
+        <div class="container">
+        
+
+        		 <div class="w3-content w3-section" style="max-width:500px">
+  				 <img class="mySlides" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwMS83OTcvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExODA5NzMzMzguanBn" style="width:100%">
+			  <img class="mySlides" src="https://cdn1.medicalnewstoday.com/content/images/articles/323/323636/blue-light-style.jpg" style="width:100%">
+  <img class="mySlides" src="https://static.techspot.com/images2/news/bigimage/2019/04/2019-04-20-image-2.jpg" style="width:100%">
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
+        		     
+			<form method="POST" action="{{url_for('find')}}" class="form-inline">
 			{{ form.hidden_tag() }}
 				
-				<div>
-					{{ form.email.label}}
-					{% if form.email.errors %}
-						{{ form.email}}
-						<div class="invalid-feedback">
-							{% for error in form.email.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.email}}
-					{% endif %}
-				</div>
-				</div>
-				<div>
+				
+		      <div class="form-group mr-2">
 					{{ form.location.label}}
 					{% if form.location.errors %}
 						{{ form.location}}
@@ -90,7 +110,8 @@
 						{{ form.location}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-group mr-2">
+
 					{{ form.price.label}}
 					{% if form.price.errors %}
 						{{ form.price}}
@@ -103,7 +124,8 @@
 						{{ form.price}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-group mr-2">
+
 					{{ form.requirement.label}}
 					{% if form.requirement.errors %}
 						{{ form.requirement}}
@@ -122,7 +144,11 @@
                 {{ form.submit(class="btn btn-outline-info") }}
 	        </div>
         
-
+ 	    </form>
+ 	</div>
+<script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
 
     
 </body>

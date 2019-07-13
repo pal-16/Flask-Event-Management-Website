@@ -58,7 +58,7 @@ def find():
     form = uRegistrationForm()
     if form.validate_on_submit():
         print("yes1")
-        user = User(email=form.email.data,location=form.location.data,price=form.price.data,requirement=form.requirement.data)
+        user = User(location=form.location.data,price=form.price.data,requirement=form.requirement.data)
         db.session.add(user)
         print("you can do it")
         db.session.commit()
@@ -70,8 +70,7 @@ def find():
       print("success2")
       # this is working   
       return render_template('detail.html',title='match',form=form,org=org)
-      print("okay")
-      
+           
     
     else:
         return render_template('index.html')
@@ -127,11 +126,7 @@ def uregister():
             
         org = Org(name=form.name.data,email=form.email.data,password=hashed_password,location=form.location.data,price=form.price.data,contact=form.contact.data,address=form.address.data,requirement=form.requirement.data)
 
-        if form.picture.data: 
-            picture_file = save_picture(form.picture.data)
-            image_file=picture_file
-            print('Profile picture saved')
-
+        
         db.session.add(org)
         db.session.commit()
         print("Org")

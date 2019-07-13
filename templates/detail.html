@@ -80,9 +80,16 @@ height: 100px; width: 70%; background-color: powderblue;
     
       {% for org in org|sort(attribute='price') %}
               {% if org.price < form.price.data|int() %}
-                <div class="even">
+                 <div class="card" style="width: 18rem;">
+ <img class="w3-round" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}"> <div class="card-body">
+    <h5 class="card-title">{{org.name}}</h5>
+    <p class="card-text">{{org.email}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+                <!--div class="even">
                    <article class="media content-section">
-                    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
+                    <img class="w3-round" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
             
                    <li>  email{{ org.email }}<br>
                          contact{{ org.contact }}<br>
@@ -91,7 +98,7 @@ height: 100px; width: 70%; background-color: powderblue;
                        <a href= "{{ url_for('org', org_id=org.id) }}" class="btn btn-outline-info"> further details</a>
                   
                 </article>
-              </div>
+              </div-->
               {% endif %}
 
       {% endfor %}
