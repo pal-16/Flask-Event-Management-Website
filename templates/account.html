@@ -10,19 +10,24 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     
-     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
         <title>site</title>
     {% endif %}
+  <style type="text/css">
+ .bg-steel {
+  background-color: black;
+}
+
+.bg{
+  background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
+  
+ }
+</style>
 </head>
-<body background="rounddd.jpg">
+<body >
 
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -46,7 +51,7 @@
         </div>
       </nav>
     </header>
-	 <body>
+	 <body class="bg">
 			{% with messages = get_flashed_messages() %}
 				 {% if messages %}
 						<ul>
@@ -57,19 +62,14 @@
 				 {% endif %}
 			{% endwith %}
 				
-
-		<div class="content-section">
-			<div class="media">
-				<a href = "{{ url_for('static', filename='profile_pics/' + organizer.image_file) }}"> <img class="circle responive-img account-img" src="{{ image_file }}"> </a>
-
-				<!-- We basically made the image a link; with the image being rendered from the said folder static/profile_pics. The commented part on line 34 is included in line 31.-->
-				<!--<img class="rounded-circle account-img" src="{{ image_file }} href=main.css"> -->
-
-				<div class="media-body">
-					<h2 class="account-heading">Welcome, {{ organizer.name }} </h2>
-					<p class="text-secondary"><b> Email: </b> {{ organizer.email }}</p>
-				</div>
-			</div>
+        <div class="content-section">
+		      <div class="media">
+			        <img class="rounded-circle account-img" src="{{current_user.image_file }}">
+			        <div class="media-body">
+			          <h2 class="account-heading">{{ current_user.username }}</h2>
+			          <p class="text-secondary">{{ current_user.email }}</p>
+		            </div>
+		      </div>
 
 				<form method="POST" action="/account" enctype="multipart/form-data">
 						{{ form.hidden_tag() }}
@@ -123,3 +123,10 @@
 				</form>
 
 		</div>
+
+	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+

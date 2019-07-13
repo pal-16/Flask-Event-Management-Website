@@ -15,30 +15,21 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style type="text/css">
+ .bg-steel {
+  background-color: black;
+}
 
+.bg{
+  background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
+  
+ }
+</style>
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
         <title>site</title>
     {% endif %}
-<style type="text/css">
-  .bg{
-  background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
-  background-size: cover;
-  
- }
- .bg-steel {
-  background-color: black;
-}
-
-
-.even{
-height: 100px; width: 70%; background-color: powderblue;
-
-
-}
-</style>
-
 </head>
 <body class="bg">
 
@@ -66,36 +57,19 @@ height: 100px; width: 70%; background-color: powderblue;
     </header>
   <div class="palak">
 
-   <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    sort by
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">low to high</a>
-    <a class="dropdown-item" href="#">high to low</a>
-     <a class="dropdown-item" href="#">popularity</a>
-   
-  </div>
-</div>   
-    
-      {% for org in org|sort(attribute='price') %}
-              {% if org.price < form.price.data|int() %}
-                <div class="even">
-                   <article class="media content-section">
-                    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
-            
-                   <li>  email{{ org.email }}<br>
-                         contact{{ org.contact }}<br>
-                         price{{org.price}}<br>
-                            </li>              
-                       <a href= "{{ url_for('org', org_id=org.id) }}" class="btn btn-outline-info"> further details</a>
-                  
-                </article>
-              </div>
-              {% endif %}
+      
+      <hr>
+      <h3> </h3>
+               <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
+        
+               <li>  email{{ org.email }}<br>
+                     contact{{ org.contact }}<br>
+                     price{{org.price}}
+                             </li>
+                   
 
-      {% endfor %}
-  
+      <hr>
 
      
 </div>

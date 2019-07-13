@@ -1,10 +1,118 @@
+<!DOCTYPE html>
 <html>
-<body>
-		
-		<div>
-			<form method="POST" action="/hregister"> 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    
+    
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>site</title>
+    {% endif %}
+
+ <style>
+  .wrapper {
+    background-color: whitesmoke;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 3px;
+  }
+  .form-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: .5em;
+  }
+  .form-row > label {
+    padding: .5em 1em .5em 0;
+    flex: 1;
+  }
+  .form-row > input {
+    flex: 2;
+  }
+  .form-row > input,
+  .form-row > button {
+    padding: .5em;
+  }
+  .form-row > button {
+   background: gray;
+   color: white;
+   border: 0;
+  }
+ @media screen and (min-width: 768px) {
+   	.form-row > input {
+    	flex: 3;  
+   }
+  }
+ @media screen and (min-width: 992px) {
+   	.form-row > input {
+    	flex: 4;  
+   }
+  }
+ @media screen and (min-width: 1200px) {
+   	.form-row > input {
+    	flex: 5;  
+   }
+  }
+
+ .bg-steel {
+  background-color: black;
+}
+
+.bg{
+  background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
+  
+ }
+</style>
+
+</head>
+<body class="bg">
+
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      	
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/home">event management</a>
+          
+            <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+           
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+             {% else %}
+               
+
+              <a class="nav-item nav-link" href="{{ url_for('register') }}">organizerRegister</a>
+               <a class="nav-item nav-link" href="{{ url_for('login') }}">organizerlogin</a>
+             {% endif %}
+            </div>
+          
+
+        </div>
+      </nav>
+    </header>
+	
+			{% with messages = get_flashed_messages() %}
+				 {% if messages %}
+						<ul>
+							 {% for message in messages %}
+							 <li>{{ message }}</li>
+							 {% endfor %}
+						</ul>
+				 {% endif %}
+			{% endwith %}
+				
+       
+		     
+
+			<form method="POST" action="/hregister"enctype="multipart/form-data" class="wrapper"> 
 			{{ form.hidden_tag() }}
-				<div>
+				<div class="form-row">
 					{{ form.name.label}}
 					{% if form.name.errors %}
 						{{ form.name}}
@@ -17,7 +125,7 @@
 						{{ form.name}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.email.label}}
 					{% if form.email.errors %}
 						{{ form.email}}
@@ -30,7 +138,7 @@
 						{{ form.email}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.password.label}}
 					{% if form.password.errors %}
 						{{ form.password}}
@@ -43,7 +151,7 @@
 						{{ form.password}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.confirm_password.label}}
 					{% if form.confirm_password.errors %}
 						{{ form.confirm_password}}
@@ -56,7 +164,7 @@
 						{{ form.confirm_password}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.occasion.label}}
 					{% if form.occasion.errors %}
 						{{ form.occasion}}
@@ -79,7 +187,7 @@
                     {% endif %}
                 </div>
           
-				<div>
+				<div class="form-row">
 					{{ form.location.label}}
 					{% if form.location.errors %}
 						{{ form.location}}
@@ -92,7 +200,7 @@
 						{{ form.location}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.price.label}}
 					{% if form.price.errors %}
 						{{ form.price}}
@@ -105,7 +213,7 @@
 						{{ form.price}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.contact.label}}
 					{% if form.contact.errors %}
 						{{ form.price}}
@@ -118,7 +226,7 @@
 						{{ form.contact}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.address.label}}
 					{% if form.address.errors %}
 						{{ form.address}}
@@ -131,7 +239,7 @@
 						{{ form.address}}
 					{% endif %}
 				</div>
-				<div>
+				<div class="form-row">
 					{{ form.requirement.label}}
 					{% if form.requirement.errors %}
 						{{ form.requirement}}
@@ -155,6 +263,10 @@
             Already Have An Account? <a class="ml-2" href="login">Sign In</a>
         </small>
     </div>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 			
 </body>
 </html>

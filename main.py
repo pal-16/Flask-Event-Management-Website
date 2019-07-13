@@ -10,7 +10,7 @@ from flask_bcrypt import (Bcrypt,
                           generate_password_hash,)
 
 from forms import RegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm
-from models import User
+from models import Org,User
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy_utils import IntRangeType
 
@@ -32,6 +32,13 @@ def home():
         return redirect(url_for('find'))
     return render_template('usermatch.html', title='home', form=form)
 
+@app.route("/detail/<int:org_id>")
+def org(org_id):
+    org = Org.query.get_or_404(org_id)
+    return render_template('fd.html', title='full details', org=org)
+
+
+
 @app.route("/display")
 def display():
     return render_template('detail.html')
@@ -45,35 +52,40 @@ def index():
 def flas():
    return render_template('flas.html')
 
-
+   
 @app.route('/find',methods=['GET', 'POST'])
 def find():
     form = uRegistrationForm()
-
-    user = User.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
-    if user:                     
-      print("success2") # this is working   
-      return render_template('detail.html',title='match',form=form,user=user)
+    if form.validate_on_submit():
+        print("yes1")
+        user = User(email=form.email.data,location=form.location.data,price=form.price.data,requirement=form.requirement.data)
+        db.session.add(user)
+        print("you can do it")
+        db.session.commit()
+    if form.location.data:    
+       org= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
+    else :
+        org= Org.query.filter_by(requirement=form.requirement.data).all()
+    if org:                     
+      print("success2")
+      # this is working   
+      return render_template('detail.html',title='match',form=form,org=org)
       print("okay")
       
-      if user1:
-        return render_template('detail.html',title='match',form1=form,user=user)
-
+    
     else:
         return render_template('index.html')
 
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        org =Org.query.filter_by(email=form.email.data).first()
         print("good")
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        if org and bcrypt.check_password_hash(org.password, form.password.data):
             print("palak")
-            login_user(user, remember=form.remember.data)
+            login_user(org, remember=form.remember.data)
 
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('account'))
@@ -112,33 +124,35 @@ def uregister():
     form = RegistrationForm() # flow of control is from top to bottom; so the logic TO BE PASSED to temp.html is written first, SO THAT it can be passed  okay thanks
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        
-        user = User(name=form.name.data,email=form.email.data,password=hashed_password,location=form.location.data,price=form.price.data,contact=form.contact.data,address=form.address.data,requirement=form.requirement.data)
+            
+        org = Org(name=form.name.data,email=form.email.data,password=hashed_password,location=form.location.data,price=form.price.data,contact=form.contact.data,address=form.address.data,requirement=form.requirement.data)
 
         if form.picture.data: 
-            image_file = save_picture(form.picture.data)
-            user.image_file = url_for('static', filename='profile_pics/'+user.image_file)
+            picture_file = save_picture(form.picture.data)
+            image_file=picture_file
             print('Profile picture saved')
 
-        db.session.add(user)
+        db.session.add(org)
         db.session.commit()
-
+        print("Org")
+        print(org)
         print("validated")
         flash('You were successfully signed up')
         return redirect(url_for('index'))
-        
-    return render_template('temp.html', title='Register', form=form)
+
+    
+    return render_template('temp.html', title='Register',form=form)
       
 @app.route("/pregister", methods=['GET', 'POST'])
 def pregister():
     form = RegistrationForm()
     if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)
-        user = User(name = form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
-        db.session.add(user)
+        
+        org = Org(name = form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
+        db.session.add(org)
         db.session.commit()
         print("validated")
+        print(Org)
         flash('You were successfully signed up')
         return redirect(url_for('index'))
         
@@ -148,11 +162,10 @@ def pregister():
 def qregister():
     form = RegistrationForm()
     if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)           
-        user = User(name=form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
-        image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-        db.session.add(user)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        
+        org = Org(name=form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
+        db.session.add(org)
         db.session.commit()
         print("validated")
         print("validated")
@@ -165,25 +178,19 @@ def qregister():
 @login_required
 def account():
     form = UpdateAccountForm()
-    organizer = User.query.filter_by(id=current_user.id).first()
-    print(organizer)
     if form.validate_on_submit():
-
-        organizer = User(name = form.name.data, email=form.email.data)
 
         if form.picture.data:
             picture_file = save_picture(form.picture.data)
-            organizer.image_file = picture_file
-            print('profile picture updated')
-
+            current_user.image_file = picture_file
+        current_user.name = form.name.data
+        current_user.email = form.email.data
         db.session.commit()
-        flash('Your account has been updated!')
+        flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
-
     elif request.method == 'GET':
-        form.name.data = organizer.name
-        form.email.data = organizer.email
-
-    image_file = url_for('static', filename='profile_pics/' + organizer.image_file)
+        form.name.data = current_user.name
+        form.email.data = current_user.email
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
-                           image_file=image_file, form=form, organizer=organizer)
+                           image_file=image_file, form=form)

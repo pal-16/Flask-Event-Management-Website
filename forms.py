@@ -3,7 +3,7 @@ from flask_wtf.file import FileField,FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField,SelectField
 from flask_login import current_user
 from wtforms.validators import DataRequired, Length, Email, EqualTo ,  ValidationError
-from models import User
+from models import Org,User
 
 
 class LoginForm(FlaskForm):
@@ -51,7 +51,7 @@ class uRegistrationForm(FlaskForm):
                         validators=[DataRequired(), Email()])
    
     requirement  = SelectField('requirement',
-                        validators=[DataRequired()],choices=[('h','halls'),('d','decorators'),('c','cateorors')])
+                        choices=[('h','halls'),('d','decorators'),('c','cateorors')])
     location  = StringField('location',
                         validators=[DataRequired()])
     price  = StringField('price')
