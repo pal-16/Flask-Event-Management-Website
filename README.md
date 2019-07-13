@@ -1,3 +1,3 @@
 MANAGING EVENT MANAGEMENT
 
-FAITH IT IS.
+Getting started.
