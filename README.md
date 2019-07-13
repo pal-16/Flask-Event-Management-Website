@@ -1,3 +1,4 @@
 MANAGING EVENT MANAGEMENT
 
-Is this change visible to all?
+I have committed the changes made today. Checkout.
+– Mounil (argus-eyed)
