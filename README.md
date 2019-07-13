@@ -1,3 +1,3 @@
 MANAGING EVENT MANAGEMENT
 
-FAITH IT IS.
+Is this change visible to all?
