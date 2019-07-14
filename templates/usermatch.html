@@ -31,6 +31,24 @@
   background-size: cover;
  }
  .mySlides {display:none;}
+ .hero-image {
+  background-image: url("/w3images/photographer.jpg");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
 </style>  
   {% if title %}
         <title>{{ title }}</title>
@@ -52,8 +70,8 @@
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
              {% else %}
-               
-
+              <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
+              <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
               <a class="nav-item nav-link" href="{{ url_for('register') }}">organizerRegister</a>
                <a class="nav-item nav-link" href="{{ url_for('login') }}">organizerlogin</a>
              {% endif %}
@@ -66,38 +84,39 @@
     
         
           
-        <div class="container">
         
+           <div class="hero-image">
 
-        		 <div class="w3-content w3-section" style="max-width:500px">
-  				 <img class="mySlides" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwMS83OTcvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExODA5NzMzMzguanBn" style="width:100%">
-			  <img class="mySlides" src="https://cdn1.medicalnewstoday.com/content/images/articles/323/323636/blue-light-style.jpg" style="width:100%">
-  <img class="mySlides" src="https://static.techspot.com/images2/news/bigimage/2019/04/2019-04-20-image-2.jpg" style="width:100%">
-</div>
+        		 <img class="mySlides" src="https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwMS83OTcvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExODA5NzMzMzguanBn" style="width:100%">
+			     <img class="mySlides" src="https://cdn1.medicalnewstoday.com/content/images/articles/323/323636/blue-light-style.jpg" style="width:100%">
+          <img class="mySlides" src="https://static.techspot.com/images2/news/bigimage/2019/04/2019-04-20-image-2.jpg" style="width:100%">
+          
 
-<script>
-var myIndex = 0;
-carousel();
+           <script>
 
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 2000); // Change image every 2 seconds
-}
-</script>
+           var myIndex = 0;
+           carousel();
 
-        		     
-			<form method="POST" action="{{url_for('find')}}" class="form-inline">
+             function carousel() {
+             var i;
+             var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";  
+            }
+             myIndex++;
+             if (myIndex > x.length) {myIndex = 1}    
+            x[myIndex-1].style.display = "block";  
+             setTimeout(carousel, 2000); // Change image every 2 seconds
+             }
+            </script>
+ 
+    <div class="hero-text">
+     <div>       		     
+			<form class="form-inline" method="POST" action="{{url_for('find')}}">
 			{{ form.hidden_tag() }}
 				
 				
-		      <div class="form-group mr-2">
+		      <div class="form-group ">
 					{{ form.location.label}}
 					{% if form.location.errors %}
 						{{ form.location}}
@@ -110,7 +129,7 @@ function carousel() {
 						{{ form.location}}
 					{% endif %}
 				</div>
-				<div class="form-group mr-2">
+				<div class="form-group ">
 
 					{{ form.price.label}}
 					{% if form.price.errors %}
@@ -124,7 +143,7 @@ function carousel() {
 						{{ form.price}}
 					{% endif %}
 				</div>
-				<div class="form-group mr-2">
+				<div class="form-group">
 
 					{{ form.requirement.label}}
 					{% if form.requirement.errors %}
@@ -134,18 +153,20 @@ function carousel() {
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
-					{% else %}
+					 {% else %}
 						{{ form.requirement}}
-					{% endif %}
-				</div>
+					  {% endif %}
+				    </div>
 				
 				
-			  <div class="form-group">
+			   <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
-	        </div>
+	      </div>
         
  	    </form>
+    </div>
  	</div>
+ </div>
 <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/main.js"></script>

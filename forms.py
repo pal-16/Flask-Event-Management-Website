@@ -35,13 +35,13 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_username(self, name):
-        user = User.query.filter_by(name=name.data).first()
-        if user:
+        org = Org.query.filter_by(name=name.data).first()
+        if org:
             raise ValidationError('That username is taken. Please choose a different one.')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
-        if user:
+        org =Org.query.filter_by(email=email.data).first()
+        if org:
             raise ValidationError('That email is taken. Please choose a different one.')
 
    

@@ -43,9 +43,17 @@ def org(org_id):
 def display():
     return render_template('detail.html')
 
-@app.route('/index')
-def index():
-   return render_template('index.html')
+@app.route("/about")
+def about():
+    return render_template('about.html')
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html')
+
+@app.route('/afterreg')
+def afterreg():
+   return render_template('afterreg.html')
 
 
 @app.route('/flas')
@@ -73,7 +81,7 @@ def find():
            
     
     else:
-        return render_template('index.html')
+        return render_template('noresult.html')
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -116,10 +124,10 @@ def logout():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     
-    return render_template('i.html')
+    return render_template('typereg.html')
 
 @app.route("/hregister", methods=['GET', 'POST'])
-def uregister():                                   
+def hallreg():                                   
     form = RegistrationForm() # flow of control is from top to bottom; so the logic TO BE PASSED to temp.html is written first, SO THAT it can be passed  okay thanks
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -133,13 +141,13 @@ def uregister():
         print(org)
         print("validated")
         flash('You were successfully signed up')
-        return redirect(url_for('index'))
+        return redirect(url_for('afterreg'))
 
     
-    return render_template('temp.html', title='Register',form=form)
+    return render_template('hall.html', title='Register',form=form)
       
-@app.route("/pregister", methods=['GET', 'POST'])
-def pregister():
+@app.route("/decreg", methods=['GET', 'POST'])
+def decreg():
     form = RegistrationForm()
     if form.validate_on_submit():
         
@@ -149,12 +157,12 @@ def pregister():
         print("validated")
         print(Org)
         flash('You were successfully signed up')
-        return redirect(url_for('index'))
+        return redirect(url_for('afterreg'))
         
     return render_template('dec.html', title='decregister', form=form)
 
-@app.route("/qregister", methods=['GET', 'POST'])
-def qregister():
+@app.route("/caterorreg", methods=['GET', 'POST'])
+def caterorreg():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -165,7 +173,7 @@ def qregister():
         print("validated")
         print("validated")
         flash('You were successfully signed up')
-        return redirect(url_for('index'))
+        return redirect(url_for('afterreg'))
            
     return render_template('cateror.html', title='catRegister', form=form)
 

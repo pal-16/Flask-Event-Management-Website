@@ -27,7 +27,7 @@
 
 .bg{
   background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
-  
+  background-size:cover;
  }
 @font-face {
 	font-family: "Montserrat-Regular";
@@ -87,11 +87,11 @@ textarea {
 	background-size: cover;
 }
 .inner {
-	min-width: 861px;
-	transform: translateX(47px);
+	min-width: 45px;
+	transform: translateX(0px);
 	margin: auto;
 	display: flex;
-	background: #fff;
+	background-image :url("https://static.vecteezy.com/system/resources/thumbnails/000/106/870/small/free-strass-vector-gold-glitter-texture-on-black-background.jpg");
 	border-radius: 20px;
 	padding-top: 35px;
 	padding-bottom: 35px;
@@ -101,11 +101,11 @@ textarea {
     -ms-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     -o-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
-.image-holder {
-	img {
-		border-radius: 15px;
-		transform: translateX(-194px);
-	}
+.image-holder .img {
+
+		border-radius: 0px;
+		transform: translateX(-0px);
+	
 }
 form {
 	padding-top: 42px;
@@ -152,11 +152,6 @@ select.form-control {
  		display: none;
  	}
 }
-textarea.form-control {
-	width: 100%;
-	padding-top: 13px;
-	padding-bottom: 13px;
-}
 .form-row {
 	display: flex;
 	margin-bottom: 20px;
@@ -175,7 +170,7 @@ textarea.form-control {
 }
 .form-holder {
 	position: relative;
-	i {
+	 {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
@@ -350,7 +345,7 @@ button {
 	}
 	.image-holder {
 		img {
-			transform: translateX(-130px);
+			transform: translateX(0px);
 			border-radius: 0;
 		}
 	}
@@ -368,9 +363,11 @@ button {
 		margin-bottom: 20px;
 	}
 	.wrapper {
-		background: none;
+		background-image:url("https://previews.123rf.com/images/apostrophe/apostrophe1411/apostrophe141100013/33175538-abstract-paper-geometric-shapes-background-texture.jpg")
 		
 	}
+}
+
 }
 </style>
 
@@ -413,12 +410,9 @@ button {
 
 		<div class="wrapper">
 			<div class="inner">
-				<div class="image-holder">
-					<img src="https://videohive.img.customer.envatousercontent.com/files/242388686/DarkStars.jpg?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=47be9e1c9b1624361aa55a430c2a3b9b" width="75%", height="79%" alt="hiii">
-				</div>
+				
 
-
-			<form method="POST" action="/hregister"enctype="multipart/form-data"> <h3>hi</h3>
+			<form method="POST" action="/hregister"enctype="multipart/form-data"> <h3 style="color:white">one step process</h3>
 			{{ form.hidden_tag() }}
 				<div class="form-row">
 					{{ form.name.label}}
@@ -551,13 +545,15 @@ button {
 						{{ form.requirement}}
 					{% endif %}
 				</div>
+
+
 					
 			 <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
     </div>
-    </div>
+ </div>
     <div class="border-top pt-3">
         <small class="text-muted">
             Already Have An Account? <a class="ml-2" href="login">Sign In</a>

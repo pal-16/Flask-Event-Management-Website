@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,19 +19,13 @@
 <style type="text/css">
  .bg-steel {
   background-color: black;
+
 }
 
 .bg{
   background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
-  
+  background-size:cover;
  }
-
-.jumbotron{
-
-background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
-  
-  
-}
 </style>
     {% if title %}
         <title>{{ title }}</title>
@@ -42,17 +37,23 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
 
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-      	
+         
         <div class="container">
           <a class="navbar-brand mr-4" href="/home">event management</a>
           
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
+                 <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
+                <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
+             
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
              {% else %}
-               
-
+                 <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
+                 <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
+             
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">organizerRegister</a>
+             
                <a class="nav-item nav-link" href="{{ url_for('login') }}">organizerlogin</a>
              {% endif %}
             </div>
@@ -61,48 +62,18 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
         </div>
       </nav>
     </header>
-<div class="container">    
-      <div class="jumbotron">
-    
-                     <marquee behavior="scroll" direction="left">
-                        <img src="https://auraeventmanagers.com/images/services/international.jpg" alt=" a try ">
-                     </marquee>
-
-
-          <h1 class="display-4" >What do you specialize in?</h1>
-            
-          <p class="lead">    HELP US CONNECTING YOU TO THE USERS </p>
-         
-      </div>
-          
-             <div class="row">
-                  <div class="col-lg-4 ">
-                     <a href="{{ url_for('uregister') }}">halls</a>
-                
-                  <img src="https://www.labanquets.com/galleries/glenoaks/Glenoaks%20Ballroom%20by%20LA%20Banquets%20Wedding%20Venuesin%20Los%20Angeles%20and%20Banquet%20Halls%20in%20Glendale%20CA(05).jpg"  width="350" height="263" class="img-thumbnail"
-                  >
-              
-                      </div>
-             <div class="col-lg-4 ">
-              <a href="{{ url_for('qregister') }}">decorators</a>
-                
-                  <img src="https://auraeventmanagers.com/images/services/international.jpg"  width="350" height="263" class="img-thumbnail"
-                  >
-                
-              </div>
-               <div class="col-lg-4 ">
-              <a href="{{ url_for('qregister') }}">caterors</a>
-                
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpQPTaJbvKP7oxxr4DHEXNhG8Wr2qnyf3zVWZwwyW7B7QxS6bopw"  width="350" height="263" class="img-thumbnail"
-                  >
-                
-              </div>
-            
-                                                                                                   
+   <body>
+      {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li>{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+        
       
-</div>
-
-
-</body>
-
+     {% block content %} {% endblock %}
+   </body>
 </html>
