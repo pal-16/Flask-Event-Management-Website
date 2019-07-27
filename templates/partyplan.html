@@ -1,8 +1,9 @@
-<html>
-<body>
+{% extends "layout.html" %}
+{% block content %}
+
 		
 		<div>
-			<form method="POST" action="/decreg">
+			<form method="POST" action="/partyplan" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
 				<div>
 					{{ form.name.label}}
@@ -56,49 +57,24 @@
 						{{ form.confirm_password}}
 					{% endif %}
 				</div>
+
 				<div>
-					{{ form.requirement.label}}
-					{% if form.requirement.errors %}
-						{{ form.requirement}}
+					{{ form.special.label}}
+					{% if form.special.errors %}
+						{{ form.special}}
 						<div class="invalid-feedback">
-							{% for error in form.requirement.errors %}
+							{% for error in form.special.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.requirement}}
-					{% endif %}
-				</div>
-				<div>
-					{{ form.price.label}}
-					{% if form.price.errors %}
-						{{ form.price}}
-						<div class="invalid-feedback">
-							{% for error in form.price.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.price}}
-					{% endif %}
-				</div>
-				<div>
-					{{ form.contact.label}}
-					{% if form.contact.errors %}
-						{{ form.price}}
-						<div class="invalid-feedback">
-							{% for error in form.contact.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.contact}}
+						{{ form.special}}
 					{% endif %}
 				</div>
 				
 				
 			</fieldset>
-			<div class="form-group">
+			 <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
@@ -108,6 +84,4 @@
             Already Have An Account? <a class="ml-2" href="loginn">Sign In</a>
         </small>
     </div>
-			
-</body>
-</html>
+{% endblock  %}

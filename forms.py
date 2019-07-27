@@ -29,23 +29,22 @@ class RegistrationForm(FlaskForm):
     address  = StringField('address')
     requirement =SelectField('requirement',
                         validators=[DataRequired()],choices=[('h','halls'),('d','decorators'),('c','cateorors')])
+ 
+    submit = SubmitField('Sign Up')
+
+class planRegistrationForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+    email = EmailField('Email address', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[EqualTo('password')])
     
+    special=StringField('specialization for', validators=[DataRequired()])
 
 
     submit = SubmitField('Sign Up')
 
-    def validate_username(self, name):
-        org = Org.query.filter_by(name=name.data).first()
-        if org:
-            raise ValidationError('That username is taken. Please choose a different one.')
-
-    def validate_email(self, email):
-        org =Org.query.filter_by(email=email.data).first()
-        if org:
-            raise ValidationError('That email is taken. Please choose a different one.')
-
    
-
 class uRegistrationForm(FlaskForm):
     
     #email = EmailField('Email address', validators=[DataRequired(), Email()])

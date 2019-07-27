@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for plan in plan %}
+          
+               
+              <div class="row">
+                
+                  <div class="col-lg-8">
+                  <h5 class="card-title">{{plan.name}}</h5>
+                  <p class="card-text">{{plan.email}}</p>
+                  </div>
+              </div>
+
+          {% endfor %}
+{% endblock content %}

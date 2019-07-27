@@ -81,19 +81,25 @@ height: 100px; width: 70%; background-color: powderblue;
       {% for org in org|sort(attribute='price') %}
           {% if org.price < form.price.data|int() %}
                
-              <div class="col-md-4">
-                   <div class="card" style="width: 18rem;">
-                      <img class="w3-round" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}"> 
-                        <div class="card-body">
-                            <h5 class="card-title">{{org.name}}</h5>
-                            <p class="card-text">{{org.email}}</p>
-                            <a href="{{ url_for('org', org_id=org.id) }}"  class="btn btn-primary">further details</a>
-                        </div>
-                   </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <img class="w3-round" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
+                </div>
+                <div class="col-lg-8">
+                  <h5 class="card-title">{{org.name}}</h5>
+                  <p class="card-text">{{org.email}}</p>
+                  <p class="card-text">{{org.price}}}</p>
+                  <a href="{{ url_for('org', org_id=org.id) }}"  class="btn btn-primary">further details</a>
+                </div>
               </div>
-            </div> 
+
                 <!--div class="even">
-                   <article class="media content-section">
+                   <article class=
+                     sort it
+                     create a price list 
+
+
+                                    "media content-section">
                     <img class="w3-round" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
             
                    <li>  email{{ org.email }}<br>
@@ -107,9 +113,6 @@ height: 100px; width: 70%; background-color: powderblue;
           {% endif %}
 
       {% endfor %}
-  
 
-     
-</div>
-</body> 
+  </body>
 </html>

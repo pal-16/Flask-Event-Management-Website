@@ -9,8 +9,8 @@ from flask_bcrypt import (Bcrypt,
                           check_password_hash,
                           generate_password_hash,)
 
-from forms import RegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm
-from models import Org,User
+from forms import RegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm,planRegistrationForm
+from models import Org,User,Plan
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy_utils import IntRangeType
 
@@ -43,11 +43,20 @@ def org(org_id):
 def display():
     return render_template('detail.html')
 
+
+
+
+
+@app.route("/partyhosts")
+def partyhosts():
+    return render_template('partyhosts.html')
+
+
 @app.route("/about")
 def about():
     return render_template('about.html')
 
-@app.route("/contact")
+@app.route("/contact")  
 def contact():
     return render_template('contact.html')
 
@@ -60,16 +69,28 @@ def afterreg():
 def flas():
    return render_template('flas.html')
 
+@app.route("/find_test/<org_price>")
+def find_test(org_price):
+   org_price= sorted(org_price, key=lambda org: org_price) 
+   print(org_price)
+   return render_template('reverse.html',title='match',org_price=org_price)
+  
+@app.route("/find_test1")
+def find_test1():
+    sorted_list=[]
+    for org in org :
+        print(org.price)
+        sorted_list.append(org.price)
+    
+    print(sorted_list)
+    print("success 2")
+    print("validated")
+    return render_template('test.html',title='match',sorted_list=sorted_list)
+
    
 @app.route('/find',methods=['GET', 'POST'])
 def find():
     form = uRegistrationForm()
-    if form.validate_on_submit():
-        print("yes1")
-        user = User(location=form.location.data,price=form.price.data,requirement=form.requirement.data)
-        db.session.add(user)
-        print("you can do it")
-        db.session.commit()
     if form.location.data:    
        org= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
     else :
@@ -120,11 +141,50 @@ def logout():
     logout_user()
     return render_template('logout.html')
 
+@app.route("/hd")
+def hd():
+    org = Org.query.all()
+    return render_template('flashhall.html', org=org)
+
+@app.route("/decd")
+def decd():
+
+    org = Org.query.filter_by(requirement='decorators').all()           #problem ask***
+    return render_template('flashdec.html', org=org)
+
+@app.route("/catd")
+def catd():
+    org = Org.query.all()
+    return render_template('flashhall.html', org=org)
+
+@app.route("/pd")
+def pd():
+    plan = Plan.query.all()
+    return render_template('flashparty.html', plan=plan)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     
     return render_template('typereg.html')
+
+@app.route("/partyplan", methods=['GET', 'POST'])
+def partyplan():
+    form = planRegistrationForm() 
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+            
+        plan = Plan(name=form.name.data,email=form.email.data,password=hashed_password,special=form.special.data)
+
+        
+        db.session.add(plan)
+        db.session.commit()
+        print("Org")
+        print(plan)
+        print("validated")
+        flash('You were successfully signed up')
+        return redirect(url_for('afterreg'))
+    return render_template('partyplan.html',title='party',form=form)
+
 
 @app.route("/hregister", methods=['GET', 'POST'])
 def hallreg():                                   
@@ -161,8 +221,8 @@ def decreg():
         
     return render_template('dec.html', title='decregister', form=form)
 
-@app.route("/caterorreg", methods=['GET', 'POST'])
-def caterorreg():
+@app.route("/catererreg", methods=['GET', 'POST'])
+def catererreg():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -175,7 +235,7 @@ def caterorreg():
         flash('You were successfully signed up')
         return redirect(url_for('afterreg'))
            
-    return render_template('cateror.html', title='catRegister', form=form)
+    return render_template('caterer.html', title='catRegister', form=form)
 
 @app.route("/account", methods=['GET', 'POST'])
 @login_required

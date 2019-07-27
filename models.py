@@ -31,6 +31,19 @@ def __init__(self,name,email):
    self.price=price
    self.contact=contact
 
+class Plan(db.Model):
+    __tablename__ = "plan"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), unique=True, nullable=False) 
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+    special = db.Column(db.String(120)) 
+    
+    def __repr__(self):
+        return f"FUser('{self.name}', '{self.email}', '{self.password}', '{self.special}')"
+
+
+
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
