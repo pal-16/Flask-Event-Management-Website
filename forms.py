@@ -14,6 +14,13 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')      
     submit = SubmitField('Login')
 
+
+class dynamicForm(FlaskForm):
+    price  = StringField('select price range')
+    location  = StringField('location')
+    remember = BooleanField('Remember Me')      
+    submit = SubmitField('Login')
+
 class RegistrationForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     email = EmailField('Email address', validators=[DataRequired(), Email()])

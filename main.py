@@ -9,7 +9,7 @@ from flask_bcrypt import (Bcrypt,
                           check_password_hash,
                           generate_password_hash,)
 
-from forms import RegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm,planRegistrationForm
+from forms import RegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm,planRegistrationForm,dynamicForm
 from models import Org,User,Plan
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy_utils import IntRangeType
@@ -96,15 +96,39 @@ def find():
     else :
         org= Org.query.filter_by(requirement=form.requirement.data).all()
     if org:                     
-      print("success2")
-      # this is working   
-      return render_template('detail.html',title='match',form=form,org=org)
-           
-    
-    else:
-        return render_template('noresult.html')
+       ''' print("success2")
+                              user = User.query.filter_by(id=current_user.id).first()
+                              user.location = form.location.data
+                              user.price = form.price.data
+                              db.session.commit()
+                      
+                              print("User")
+                              print(user)
+                      
+                              print('in filter')'''
+    return render_template('detail.html', title='Find', org=org, form=form)
 
-
+ 
+@app.route('/findd',methods=['GET', 'POST'])
+def findd():
+    form = dynamicForm()
+    if form.location.data:    
+       org= Org.query.filter_by(location=form.location.data,price=form.price.data).all()
+    else :
+        org= Org.query.filter_by(price=form.requirement.data).all()
+    if org:                     
+       ''' print("success2")
+                              user = User.query.filter_by(id=current_user.id).first()
+                              user.location = form.location.data
+                              user.price = form.price.data
+                              db.session.commit()
+                      
+                              print("User")
+                              print(user)
+                      
+                              print('in filter')'''
+    return render_template('detail.html', title='Find', org=org, form=form)
+  
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
