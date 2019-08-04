@@ -59,19 +59,21 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         
         <div class="container">
-          <a class="navbar-brand mr-4" href="/home">event management</a>
+          <a class="navbar-brand mr-4" href="/home">MANAGE|V|ENT</a>
           
             <div class="navbar-nav">
-                 <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
-                <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
+                   <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+
+                 <a class="nav-item nav-link" href="{{ url_for('about') }}">About us</a>
+                <a class="nav-item nav-link" href="{{ url_for('contact') }}">Contact us</a>
               {% if current_user.is_authenticated %}
              
-                <a class="nav-item nav-link" href="{{ url_for('account') }}">account</a>
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
              {% else %}
                
-                <a class="nav-item nav-link" href="{{ url_for('register') }}">organizer register</a>
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">organizerlogin</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Organizer Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Organizer Login</a>
              {% endif %}
             </div>
           
@@ -79,7 +81,7 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
         </div>
       </nav>
     </header>
-
+    
     
 <div class="container">    
       <div class="jumbotron">
@@ -89,29 +91,140 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
                      </marquee>    
                                         
       </div>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  }
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+ {
+  box-sizing: border-box;
+}
+
+.card-container{
+
+    width:100%;
+    height:auto;
+    text-align:center;
+    margin:auto 0;
+    padding:50px;  
+}
+.card-container ul{
+    text-align:center;
+    margin:auto 0;
+}
+.card-container li{
+    list-style-type:none;
+    padding:.500px .500px .500px .500px;
+    float:left;
+    width:33.33%;
+    text-align:left;
+}
+
+.card{
+    
+    width:100%;
+   
+}
+.column {
+  
+  
+  padding: 5px;
+}
+
+/*.row{
+  float:left;
+  width:33.33%;
+}
+
+/* Clearfix (clear floats) 
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+*/
+  
+
+}
+</style>
+</head>
+<body>
+
+
+<ul class="card-container">
+  <div class="row">
+<li><div class="card">
+  <div class="column">
+  <img src="https://previews.123rf.com/images/pxlprostudio/pxlprostudio1902/pxlprostudio190201512/116647049-wallet-icons-on-white-background-for-graphic-and-web-design-modern-simple-vector-sign-internet-conce.jpg" alt="John" style="width:100%">
+  <h1>Pocket Friendly Deals</h1>
+  <p class="title">Find deals that suit your budget with amazing deals and prices</p>
+ </div></div></li>
+  <li><div class="card">
+    <div class="column">
+    <img src="https://cdn3.vectorstock.com/i/1000x1000/75/52/location-solid-icon-map-pin-and-website-button-vector-14597552.jpg" alt="John" style="width:100%">
+  <h1>Locations Offered</h1>
+  <p class="title">Find deals that suit your budget with amazing deals and prices</p>
+  </div>
+</div>
+</li>
+  <li><div class="card">
+    <div class="column">
+    <img src="https://thumbs.dreamstime.com/z/clock-thin-line-vector-icon-clock-vector-icon-elements-mobile-concept-web-apps-thin-line-icons-website-design-140811022.jpg" alt="John" style="width:100%">
+  <h1>Saves Time</h1>
+  <p class="title">Find all that you need at this one stop</p>
+  </div>
+  </div>
+ </li>
+</div>
+</ul>
+
+</body>
 <div class ="contentt">      
 <h1>Find the ideal</h1>
         <div class="row">
                   <div class="col-lg-3 ">
-                     <a href="{{ url_for('hd') }}">halls</a>
+                     <a href="{{ url_for('hd') }}">Halls</a>
                   </div>
                  <div class="col-lg-3 ">
-                     <a href="{{ url_for('decd') }}">decorator</a>
+                     <a href="{{ url_for('decd') }}">Decorator</a>
                 </div>
                 
                  <div class="col-lg-3 ">
-                     <a href="{{ url_for('catd') }}">caterer</a>
+                     <a href="{{ url_for('catd') }}">Caterer</a>
                   </div>
                 
                  <div class="col-lg-3 ">
-                     <a href="{{ url_for('pd') }}">party planner</a>
+                     <a href="{{ url_for('pd') }}">Party Planner</a>
                  </div>
                 
                 
        </div>
+
+
+      
+         
 </div>
 <div class ="content">     
- <h1>Or find the ideal match for your query </h1>
+ <h1>Or Find the ideal match for your query </h1>
     
      <div>       		     
 			<form class="form-inline" method="POST" action="{{url_for('find')}}">
