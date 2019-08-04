@@ -1,20 +1,6 @@
-body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
-}
-
-.pink
-{
 
 
-background:pink;
 
-}
 
 
 .site-header .navbar-nav .nav-link {
@@ -83,15 +69,7 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
-body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
-}
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
-}
 
 .bg-steel {
   background-color: #5f788a;

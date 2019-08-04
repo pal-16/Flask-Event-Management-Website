@@ -1,7 +1,130 @@
+<!DOCTYPE html>
 <html>
-<body>
-		
-		<div>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style type="text/css">
+ .bg-steel {
+  background-color: black;
+}
+
+.bg{
+  background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
+  background-size: cover; 
+ }
+
+div.a {
+  font-size: 15px;
+  font-family:"Comic Sans MS", cursive, sans-serif;
+}
+
+.container {
+  
+  margin-left: 40px;
+  margin-right: 40px;
+
+
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+
+}
+</style>
+
+</head>
+<body class="bg">
+
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      	
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/home">event management</a>
+          
+            <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                 <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
+                <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
+             
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+             {% else %}
+                 <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
+                 <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
+             
+                
+               <a class="nav-item nav-link" href="{{ url_for('login') }}">organizerlogin</a>
+             {% endif %}
+            </div>
+          
+
+        </div>
+      </nav>
+    </header>
+   <br>
+   <br>
+   <br>
+
+	<div>
+	
+		<div class ="container">
+			<fieldset class="form-group">
 			<form method="POST" action="/decreg">
 			{{ form.hidden_tag() }}
 				<div>
@@ -45,6 +168,7 @@
 				</div>
 				<div>
 					{{ form.confirm_password.label}}
+					
 					{% if form.confirm_password.errors %}
 						{{ form.confirm_password}}
 						<div class="invalid-feedback">
@@ -56,8 +180,10 @@
 						{{ form.confirm_password}}
 					{% endif %}
 				</div>
-				<div>
+				<div >
+					
 					{{ form.requirement.label}}
+					
 					{% if form.requirement.errors %}
 						{{ form.requirement}}
 						<div class="invalid-feedback">
@@ -102,12 +228,11 @@
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
+    </fieldset>
     </div>
     <div class="border-top pt-3">
         <small class="text-muted">
             Already Have An Account? <a class="ml-2" href="loginn">Sign In</a>
         </small>
     </div>
-			
-</body>
-</html>
+</div>			

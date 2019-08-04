@@ -9,7 +9,7 @@ from flask_bcrypt import (Bcrypt,
                           check_password_hash,
                           generate_password_hash,)
 
-from forms import RegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm,planRegistrationForm,dynamicForm
+from forms import RegistrationForm,cRegistrationForm,dRegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm,planRegistrationForm,dynamicForm
 from models import Org,User,Plan
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy_utils import IntRangeType
@@ -92,21 +92,14 @@ def find_test1():
 def find():
     form = uRegistrationForm()
     if form.location.data:    
-       org= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
+        print(form.requirement.data+" "+form.location.data)
+        orgList= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
+        print("happening")
+        print(orgList)
     else :
-        org= Org.query.filter_by(requirement=form.requirement.data).all()
-    if org:                     
-       ''' print("success2")
-                              user = User.query.filter_by(id=current_user.id).first()
-                              user.location = form.location.data
-                              user.price = form.price.data
-                              db.session.commit()
-                      
-                              print("User")
-                              print(user)
-                      
-                              print('in filter')'''
-    return render_template('detail.html', title='Find', org=org, form=form)
+        orgList= Org.query.filter_by(requirement=form.requirement.data).all()
+                
+    return render_template('detail.html', title='Find', orgList=orgList, form=form)
 
  
 @app.route('/findd',methods=['GET', 'POST'])
@@ -117,7 +110,7 @@ def findd():
     else :
         org= Org.query.filter_by(price=form.requirement.data).all()
     if org:                     
-       ''' print("success2")
+                              print("success2")
                               user = User.query.filter_by(id=current_user.id).first()
                               user.location = form.location.data
                               user.price = form.price.data
@@ -126,7 +119,7 @@ def findd():
                               print("User")
                               print(user)
                       
-                              print('in filter')'''
+                              print('in filter')
     return render_template('detail.html', title='Find', org=org, form=form)
   
 @app.route("/login", methods=['GET', 'POST'])
@@ -212,11 +205,13 @@ def partyplan():
 
 @app.route("/hregister", methods=['GET', 'POST'])
 def hallreg():                                   
-    form = RegistrationForm() # flow of control is from top to bottom; so the logic TO BE PASSED to temp.html is written first, SO THAT it can be passed  okay thanks
+    form = RegistrationForm()
+     # flow of control is from top to bottom; so the logic TO BE PASSED to temp.html is written first, SO THAT it can be passed  okay thanks
     if form.validate_on_submit():
+
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
             
-        org = Org(name=form.name.data,email=form.email.data,password=hashed_password,location=form.location.data,price=form.price.data,contact=form.contact.data,address=form.address.data,requirement=form.requirement.data)
+        org = Org(name=form.name.data,email=form.email.data,password=hashed_password,location=form.location.data,price=form.price.data,contact=form.contact.data,address=form.address.data,requirement='h')
 
         
         db.session.add(org)
@@ -232,7 +227,7 @@ def hallreg():
       
 @app.route("/decreg", methods=['GET', 'POST'])
 def decreg():
-    form = RegistrationForm()
+    form = dRegistrationForm()
     if form.validate_on_submit():
         
         org = Org(name = form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
@@ -247,15 +242,17 @@ def decreg():
 
 @app.route("/catererreg", methods=['GET', 'POST'])
 def catererreg():
-    form = RegistrationForm()
+    form = cRegistrationForm()
+    print("hi palak going well")
     if form.validate_on_submit():
+        print("validated")
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         
         org = Org(name=form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
         db.session.add(org)
         db.session.commit()
         print("validated")
-        print("validated")
+       
         flash('You were successfully signed up')
         return redirect(url_for('afterreg'))
            
@@ -281,3 +278,4 @@ def account():
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
+
