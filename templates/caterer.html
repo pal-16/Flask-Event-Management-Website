@@ -209,6 +209,20 @@ hr {
 						{{ form.contact}}
 					{% endif %}
 				</div>
+				<div class="form-row">
+					{{ form.details.label}}
+					{% if form.details.errors %}
+						{{ form.details}}
+						<div class="invalid-feedback">
+							{% for error in form.details.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.details}}
+					{% endif %}
+				</div>
+                
 				
 				<div>
 					{{ form.price.label}}

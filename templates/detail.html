@@ -89,46 +89,10 @@
 						 </div>
 			 </div>
 		 
-
+ 
 	<h3 class="w3-bar-item">change my options</h3>
-	<form method="POST" action="/find" enctype="multipart/form-data">
-		<div class = "filter right-align">
-			<div class = "amber lighten-1 col s3 hoverable">
-				<h5><b><span class = "black-text center-align"> price </span></b></h5>
-				{% if form.price.errors %}
-					{{ form.price(class="form-control form-control-lg is-invalid") }}
-					<div class="invalid-feedback">
-						{% for error in form.price.errors %}
-							<span>{{ error }}</span>
-						{% endfor %}
-					</div>
-				{% else %}
-					{{ form.price(class="form-control form-control-lg") }}
-				{% endif %}
-			</div>
-			<hr>
-			<div class = "amber lighten-1 col s3 hoverable">
-				<h5><b><span class = "black-text center-align"> location </span></b></h5>
-				{% if form.location.errors %}
-					{{ form.location(class="form-control form-control-lg is-invalid") }}
-					<div class="invalid-feedback">
-						{% for error in form.location.errors %}
-							<span>{{ error }}</span>
-						{% endfor %}
-					</div>
-				{% else %}
-					{{ form.location(class="form-control form-control-lg") }}
-				{% endif %}
-				<br>
-			</div>
-			<hr>
-			
-			<div class="col s3 form-group center-align">
-				<a href = "{{url_for('find')}}"> {{ form.submit(class="button-border hoverable waves-effect waves-light btn-large amber lighten-3 black-text") }} </a>
-			</div>
-		</div>
-	</form>
-
+	 <a href="dynamic"  class="btn btn-primary">go change</a>
+	
 </div>
 <!-- Page Content -->
 <div class="column">

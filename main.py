@@ -9,8 +9,8 @@ from flask_bcrypt import (Bcrypt,
                           check_password_hash,
                           generate_password_hash,)
 
-from forms import RegistrationForm,cRegistrationForm,dRegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm,planRegistrationForm,dynamicForm
-from models import Org,User,Plan
+from forms import hRegistrationForm,cRegistrationForm,dRegistrationForm,LoginForm,uRegistrationForm,UpdateAccountForm,planRegistrationForm,dynamicForm
+from models import Org,User
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy_utils import IntRangeType
 
@@ -39,9 +39,10 @@ def org(org_id):
 
 
 
+
 @app.route("/display")
-def display():
-    return render_template('detail.html')
+def feedback():
+    return render_template('page.html')
 
 
 
@@ -91,7 +92,7 @@ def find_test1():
 @app.route('/find',methods=['GET', 'POST'])
 def find():
     form = uRegistrationForm()
-    if form.location.data:    
+    if form.location.data=='':    
         print(form.requirement.data+" "+form.location.data)
         orgList= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
         print("happening")
@@ -121,17 +122,29 @@ def findd():
                       
                               print('in filter')
     return render_template('detail.html', title='Find', org=org, form=form)
+
+@app.route('/dynamic',methods=['GET', 'POST'])
+def dynamic():
+    form = uRegistrationForm()
+    if form.location.data:    
+        print(form.requirement.data+" "+form.location.data)
+        orgList= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
+        print("happening")
+        print(orgList)
+    else :
+        orgList= Org.query.filter_by(requirement=form.requirement.data).all()
+                
+    return render_template('dynamic.html', title='Find', orgList=orgList, form=form)
+
   
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        org =Org.query.filter_by(email=form.email.data).first()
-        print("good")
-        if org and bcrypt.check_password_hash(org.password, form.password.data):
+        org =Org.query.filter_by(email=form.email.data,password=form.password.data).first()
+        if org :
             print("palak")
             login_user(org, remember=form.remember.data)
-
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('account'))
         else:
@@ -160,24 +173,24 @@ def logout():
 
 @app.route("/hd")
 def hd():
-    org = Org.query.all()
+    org = Org.query.filter_by(requirement='h').all()
     return render_template('flashhall.html', org=org)
 
 @app.route("/decd")
 def decd():
 
-    org = Org.query.filter_by(requirement='decorators').all()           #problem ask***
+    org = Org.query.filter_by(requirement='d').all()           #problem ask***
     return render_template('flashdec.html', org=org)
 
 @app.route("/catd")
 def catd():
-    org = Org.query.all()
+    org = Org.query.filter_by(requirement='c').all()
     return render_template('flashhall.html', org=org)
 
 @app.route("/pd")
 def pd():
-    plan = Plan.query.all()
-    return render_template('flashparty.html', plan=plan)
+   org = Org.query.filter_by(requirement='p').all()
+   return render_template('flashparty.html', org=org)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -187,10 +200,11 @@ def register():
 @app.route("/partyplan", methods=['GET', 'POST'])
 def partyplan():
     form = planRegistrationForm() 
+    print("hey")
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-            
-        plan = Plan(name=form.name.data,email=form.email.data,password=hashed_password,special=form.special.data)
+        print("hi")
+        print("hiyo")
+        plan = Org(name=form.name.data,email=form.email.data,password=form.password.data,requirement='p',special=form.special.data,details=form.details.data,contact=form.contact.data,price=form.price.data)
 
         
         db.session.add(plan)
@@ -205,13 +219,12 @@ def partyplan():
 
 @app.route("/hregister", methods=['GET', 'POST'])
 def hallreg():                                   
-    form = RegistrationForm()
+    form = hRegistrationForm()
      # flow of control is from top to bottom; so the logic TO BE PASSED to temp.html is written first, SO THAT it can be passed  okay thanks
     if form.validate_on_submit():
 
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
             
-        org = Org(name=form.name.data,email=form.email.data,password=hashed_password,location=form.location.data,price=form.price.data,contact=form.contact.data,address=form.address.data,requirement='h')
+        org = Org(name=form.name.data,email=form.email.data,password=form.password.data,occasion=form.occasion.data,location=form.location.data,price=form.price.data,contact=form.contact.data,details=form.details.data,accomodation=form.accomodation.data,address=form.address.data,requirement='h')
 
         
         db.session.add(org)
@@ -230,7 +243,7 @@ def decreg():
     form = dRegistrationForm()
     if form.validate_on_submit():
         
-        org = Org(name = form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
+        org = Org(name = form.name.data,email=form.email.data,password=form.password.data,requirement='d',price=form.price.data,details=form.details.data,contact=form.contact.data)
         db.session.add(org)
         db.session.commit()
         print("validated")
@@ -248,7 +261,7 @@ def catererreg():
         print("validated")
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         
-        org = Org(name=form.name.data,email=form.email.data,password=form.password.data,requirement=form.requirement.data,price=form.price.data,contact=form.contact.data)
+        org = Org(name=form.name.data,email=form.email.data,password=form.password.data,requirement='c',price=form.price.data,details=form.details.data,contact=form.contact.data)
         db.session.add(org)
         db.session.commit()
         print("validated")
@@ -275,6 +288,7 @@ def account():
     elif request.method == 'GET':
         form.name.data = current_user.name
         form.email.data = current_user.email
+        form.price.data= current_user.price
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)

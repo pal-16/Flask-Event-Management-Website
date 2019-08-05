@@ -105,7 +105,7 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
              {% else %}
-               
+                <a class="nav-item nav-link" href="{{ url_for('feedback') }}">feedback</a>
                 <a class="nav-item nav-link" href="{{ url_for('register') }}">Organizer Register</a>
                 <a class="nav-item nav-link" href="{{ url_for('login') }}">Organizer Login</a>
              {% endif %}
@@ -124,12 +124,11 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
 
 <div class="hero-image">
   <div class="hero-text">
-    <h1 style="font-size:100px"  >managE|V|ENT </h1>
-   
+    <h1 style="font-size:100px"><cite>MANAG</cite>E|V|ENT</h1>
+    
   </div>
 </div>
 
-<h1 style="text-align:center;">why book with us ?</h1>
 <style>
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -256,8 +255,67 @@ a {
 </style>
 </head>
 <body>
+<div class ="content">     
+  <h1> Find the ideal match</h1>
+  
+     <div>               
+      <form class="form-inline" method="POST" action="{{url_for('find')}}">
+      {{ form.hidden_tag() }}
+        
+        
+          <div class="form-group ">
+          {{ form.location.label}}
+          {% if form.location.errors %}
+            {{ form.location}}
+            <div class="invalid-feedback">
+              {% for error in form.location.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.location}}
+          {% endif %}
+        </div>
+        <div class="form-group ">
 
+          {{ form.price.label}}
+          {% if form.price.errors %}
+            {{ form.price}}
+            <div class="invalid-feedback">
+              {% for error in form.price.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.price}}
+          {% endif %}
+        </div>
+        <div class="form-group">
 
+          {{ form.requirement.label}}
+          {% if form.requirement.errors %}
+            {{ form.requirement}}
+            <div class="invalid-feedback">
+              {% for error in form.requirement.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+           {% else %}
+            {{ form.requirement}}
+            {% endif %}
+            </div>
+        
+        
+         <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+<h1 style="text-align:center;">why book with us ?</h1>
+ 
 <ul class="card-container">
   <div class="row">
 <li><div class="card">
@@ -286,90 +344,79 @@ a {
 </ul>
 
 </body>
-<div class ="contentt">      
-<h1>Find the ideal</h1>
-        <div class="row">
-                  <div class="col-lg-3 ">
-                     <a href="{{ url_for('hd') }}">Halls</a>
-                  </div>
-                 <div class="col-lg-3 ">
-                     <a href="{{ url_for('decd') }}">Decorator</a>
-                </div>
-                
-                 <div class="col-lg-3 ">
-                     <a href="{{ url_for('catd') }}">Caterer</a>
-                  </div>
-                
-                 <div class="col-lg-3 ">
-                     <a href="{{ url_for('pd') }}">Party Planner</a>
-                 </div>
-                
-                
-       </div>
 
-
-      
-         
 </div>
-<div class ="content">     
- <h1>Or Find the ideal match for your query </h1>
     
-     <div>       		     
-			<form class="form-inline" method="POST" action="{{url_for('find')}}">
-			{{ form.hidden_tag() }}
-				
-				
-		      <div class="form-group ">
-					{{ form.location.label}}
-					{% if form.location.errors %}
-						{{ form.location}}
-						<div class="invalid-feedback">
-							{% for error in form.location.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.location}}
-					{% endif %}
-				</div>
-				<div class="form-group ">
+<div id="id_buttons" class="details-stripe">
 
-					{{ form.price.label}}
-					{% if form.price.errors %}
-						{{ form.price}}
-						<div class="invalid-feedback">
-							{% for error in form.price.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.price}}
-					{% endif %}
-				</div>
-				<div class="form-group">
+        <div class="container">
 
-					{{ form.requirement.label}}
-					{% if form.requirement.errors %}
-						{{ form.requirement}}
-						<div class="invalid-feedback">
-							{% for error in form.requirement.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					 {% else %}
-						{{ form.requirement}}
-					  {% endif %}
-				    </div>
-				
-				
-			   <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-	      </div>
-        
- 	    </form>
+            <div class="row">
+                <div class="col-md-3">
+                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;"  src="/static/glyphicons/glyphicons_232_cloud.png">
+                    <h3><a href="{{ url_for('hd') }}">Halls</a></h3>
+                    <p>
+                        Just write your application. No need to configure or maintain
+                        a web server &mdash; everything is set up and ready
+                        to go.
+                    </p>
+                    <p><a id="id_hosting_button" href="#id_hosting_details">More &raquo;</a></p>
+                </div>
+
+                <div class="col-md-3">
+                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/glyphicons/glyphicons_138_computer_proces.png">
+                    <h3><a href="{{ url_for('decd') }}">Decorators</a></h3>
+                    <p>
+                        Take your development environment with you! If you have a browser
+                        and an Internet connection, you've got everything you need.
+                    </p>
+                    <p><a id="id_develop_anywhere_button" href="#id_develop_anywhere_details">More &raquo;</a></p>
+                </div>
+
+                <div class="col-md-3">
+                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/glyphicons/glyphicons_064_lightbulb.png">
+                    <h3><a href="{{ url_for('catd') }}">caterers</a></h3>
+                    <p>
+                        PythonAnywhere is a fully-fledged Python environment, ready
+                        to go, for students and teachers &mdash; concentrate on teaching,
+                        not on installation hassles.
+                    </p>
+                    <p><a id="id_education_button" href="#id_education_details">More &raquo;</a></p>
+                </div>
+
+
+                <div class="col-md-3">
+                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/glyphicons/glyphicons_043_group.png">
+                    <h3><a href="{{ url_for('pd') }}">partyplanners</a></h3>
+                    <p>
+                        Need help with PythonAnywhere?  If you get in touch,
+                        you can talk directly with the development team.  Help
+                        for developers, from developers.
+                    </p>
+                    <p><a id="id_support_button" href="#id_support_details">More &raquo;</a></p>
+                </div>
+
+            </div>
+        </div>
     </div>
- 	</div>
-    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <div id="id_hosting_details" class="details-stripe">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>how the site works</h1>
+                </div>
+                <div class="col-md-7">
+                    <p>
+                        We
+                        make a normally complicated process very simple, letting you
+                        filter your needs 
+                        
+                    </p>
+                </div>
+            </div>
+<script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/main.js"></script>
 <footer class="footer-basic-centered">
@@ -383,7 +430,6 @@ a {
           <p class="footer-company-name">© 2019 Copyright:trinity management</p>
         </footer>
 
-    
 </body>
 </html>
 

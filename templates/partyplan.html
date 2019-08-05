@@ -1,15 +1,59 @@
 {% extends "layout.html" %}
 {% block content %}
+<br>
+<br>
+<br>
+<style>
+.square {
+    border-radius: 5px;
+  background-color: black;
+  padding: 5px;
 
+  height: 800px;
+  width: 500px;
+  
+  margin-left: 400px;
+  margin-right: 50px;
+  
+}
+input[type=text], select {
+  width: 100%;
+  padding: 6px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+
+
+
+</style>
 		
-		<div>
+		<div class="square">
 			<form method="POST" action="/partyplan" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
-				<div>
+				<div class="form-group">
 					{{ form.name.label}}
-					{% if form.name.errors %}
-						{{ form.name}}
-						<div class="invalid-feedback">
+				    {% if form.name.errors %}
+						<input type="text" id="fname" placeholder={{form.name}}>
+                        <div class="invalid-feedback">
 							{% for error in form.name.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
@@ -18,10 +62,10 @@
 						{{ form.name}}
 					{% endif %}
 				</div>
-				<div>
+				<div >
 					{{ form.email.label}}
 					{% if form.email.errors %}
-						{{ form.email}}
+						{{form.email}}
 						<div class="invalid-feedback">
 							{% for error in form.email.errors %}
 								<span>{{ error }}</span>
@@ -33,8 +77,9 @@
 				</div>
 				<div>
 					{{ form.password.label}}
+					<br>
 					{% if form.password.errors %}
-						{{ form.password}}
+						<input type="text" id="fname" placeholder={{form.password}}>
 						<div class="invalid-feedback">
 							{% for error in form.password.errors %}
 								<span>{{ error }}</span>
@@ -44,11 +89,12 @@
 						{{ form.password}}
 					{% endif %}
 				</div>
-				<div>
+				<div >
 					{{ form.confirm_password.label}}
-					{% if form.confirm_password.errors %}
-						{{ form.confirm_password}}
-						<div class="invalid-feedback">
+					<br>
+				    {% if form.confirm_password.errors %}
+						<input type="text" id="fname" placeholder={{form.confirm_password}}>
+                        <div class="invalid-feedback">
 							{% for error in form.confirm_password.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
@@ -57,7 +103,7 @@
 						{{ form.confirm_password}}
 					{% endif %}
 				</div>
-
+				
 				<div>
 					{{ form.special.label}}
 					{% if form.special.errors %}
@@ -71,6 +117,63 @@
 						{{ form.special}}
 					{% endif %}
 				</div>
+				<div>
+					{{ form.details.label}}
+					{% if form.details.errors %}
+						{{ form.details}}
+						<div class="invalid-feedback">
+							{% for error in form.details.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.details}}
+					{% endif %}
+				</div>
+				<div>
+					{{ form.requirement.label}}
+					{% if form.requirement.errors %}
+						{{ form.requirement}}
+						<div class="invalid-feedback">
+							{% for error in form.requirement.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.requirement}}
+					{% endif %}
+				</div>
+				
+				
+				
+				<div>
+					{{ form.price.label}}
+					{% if form.price.errors %}
+						{{ form.price}}
+						<div class="invalid-feedback">
+							{% for error in form.price.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.price}}
+					{% endif %}
+				</div>
+				<div>
+					{{ form.contact.label}}
+					{% if form.contact.errors %}
+						{{ form.contact}}
+						<div class="invalid-feedback">
+							{% for error in form.contact.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.contact}}
+					{% endif %}
+				</div>
+				
+				
 				
 				
 			</fieldset>
@@ -78,10 +181,12 @@
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
-    </div>
+    
     <div class="border-top pt-3">
         <small class="text-muted">
             Already Have An Account? <a class="ml-2" href="loginn">Sign In</a>
         </small>
     </div>
+  </div>
+
 {% endblock  %}

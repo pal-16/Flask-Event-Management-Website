@@ -55,19 +55,12 @@
         </div>
       </nav>
     </header>
+    <br>
+    <br>
+    <br>
   <div class="palak">
 
-       <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset>
-                <div class="form-group">
-                    {{ form.invite(class="btn btn-outline-info") }}
-                    <a class="btn btn-outline-info" href="{{ url_for('shortlisted', user2_id=org.user_id) }}"><h6>Shortlist</h6></a></li>
-                </div>
-            </fieldset>
-        </form>
-        
-      <hr>
+       
       <h3> </h3>
                <article class="media content-section">
                 <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">

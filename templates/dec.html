@@ -180,10 +180,9 @@ a {
 						{{ form.confirm_password}}
 					{% endif %}
 				</div>
-				<div >
-					
+				<div>
 					{{ form.requirement.label}}
-					
+					<br>
 					{% if form.requirement.errors %}
 						{{ form.requirement}}
 						<div class="invalid-feedback">
@@ -195,6 +194,20 @@ a {
 						{{ form.requirement}}
 					{% endif %}
 				</div>
+				<div class="form-row">
+					{{ form.details.label}}
+					{% if form.details.errors %}
+						{{ form.details}}
+						<div class="invalid-feedback">
+							{% for error in form.details.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.details}}
+					{% endif %}
+				</div>
+                
 				<div>
 					{{ form.price.label}}
 					{% if form.price.errors %}

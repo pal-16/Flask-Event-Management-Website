@@ -51,6 +51,9 @@
         </div>
       </nav>
     </header>
+    <br>
+    <br>
+    <br>
 	 <body class="bg">
 			{% with messages = get_flashed_messages() %}
 				 {% if messages %}
@@ -61,17 +64,17 @@
 						</ul>
 				 {% endif %}
 			{% endwith %}
-				
+					
         <div class="content-section">
 		      <div class="media">
 			        <img class="rounded-circle account-img" src="{{image_file }}">
 			        <div class="media-body">
 			          <h2 class="account-heading">{{ current_user.name }}</h2>
 			          <p class="text-secondary">{{ current_user.email }}</p>
+			          <p class="text-secondary">{{ current_user.requirement }}</p>
 		            </div>
 		      </div>
-
-				<form method="POST" action="/account" enctype="multipart/form-data">
+                	<form method="POST" action="/account" enctype="multipart/form-data">
 						{{ form.hidden_tag() }}
 						<fieldset class="form-group">
 								<legend class="border-bottom mb-4">Account Info</legend>
@@ -103,7 +106,45 @@
 												{{ form.email(class="form-control form-control-lg") }}
 										{% endif %}
 								</div>
-
+                                <div class="form-group">
+										{{ form.price.label(class="form-control-label") }}
+										{% if form.price.errors %}
+												{{ form.price(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.price.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.price(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+                                <div class="form-group">
+										{{ form.contact.label(class="form-control-label") }}
+										{% if form.contact.errors %}
+												{{ form.contact(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.contact.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.contact(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+								<div class="form-group">
+										{{ form.details.label(class="form-control-label") }}
+										{% if form.details.errors %}
+												{{ form.details(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.details.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.details(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
 								<div class="form-group">
 									<!-- This code is for accepting uploaded images, not for displaying them -->
 										{{ form.picture.label() }}
@@ -114,16 +155,144 @@
 												{% endfor %}
 										{% endif %}
 								</div>
+	    	{% if current_user.requirement == 'p' %}						
+                                <div class="form-group">
+										{{ form.special.label(class="form-control-label") }}
+										{% if form.special.errors %}
+												{{ form.special(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.special.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.special(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+
+
+								
 						</fieldset>
 
 						<div class="form-group">
 								{{ form.submit(class="btn btn-outline-info") }}
 						</div>
+             
 
 				</form>
 
-		</div>
+		       </div>
+            {% endif %}
+            {% if current_user.requirement == 'h' %}						
+                                <div class="form-group">
+										{{ form.special.label(class="form-control-label") }}
+										{% if form.special.errors %}
+												{{ form.special(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.special.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.special(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+                                <div class="form-group">
+										{{ form.occasion.label(class="form-control-label") }}
+										{% if form.occasion.errors %}
+												{{ form.occasion(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.occasion.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.occasion(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+                                <div class="form-group">
+										{{ form.location.label(class="form-control-label") }}
+										{% if form.location.errors %}
+												{{ form.location(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.location.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.location(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+                                <div class="form-group">
+										{{ form.accomodation.label(class="form-control-label") }}
+										{% if form.accomodation.errors %}
+												{{ form.accomodation(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.accomodation.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.accomodation(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+                                <div class="form-group">
+										{{ form.address.label(class="form-control-label") }}
+										{% if form.address.errors %}
+												{{ form.address(class="form-control form-control-lg is-invalid") }}
+												<div class="invalid-feedback">
+														{% for error in form.address.errors %}
+																<span>{{ error }}</span>
+														{% endfor %}
+												</div>
+										{% else %}
+												{{ form.address(class="form-control form-control-lg") }}
+										{% endif %}
+								</div>
+                                
 
+								
+						</fieldset>
+
+						<div class="form-group">
+								{{ form.submit(class="btn btn-outline-info") }}
+						</div>
+             
+
+				</form>
+
+		       </div>
+            {% endif %}
+            {% if current_user.requirement == 'd' %}						
+                               
+
+								
+						</fieldset>
+
+						<div class="form-group">
+								{{ form.submit(class="btn btn-outline-info") }}
+						</div>
+             
+
+				</form>
+
+		       </div>
+            {% endif %}
+            {% if current_user.requirement == 'c' %}						
+                            
+								
+						</fieldset>
+
+						<div class="form-group">
+								{{ form.submit(class="btn btn-outline-info") }}
+						</div>
+             
+
+				</form>
+
+		       </div>
+            {% endif %}
+            
 	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -1,0 +1,100 @@
+<html lang="en" style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       | <meta name="google-site-verification" content="O4UxDrfcHjC44jybs2vajc1GgRkTKCTRgVzeV6I9V14" />
+
+
+        <!-- Le styles -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" />
+
+         </head>
+    <body>
+      <div id="id_feedback_dialog" title="Help us improve" style="display:none">
+    <div id="id_feedback_dialog_blurb_big" class="dialog_blurb_big">
+        It's always a pleasure to hear from you!
+    </div>
+    <div id="id_feedback_dialog_blurb_small">
+        Ask us a question, or tell us what you love or hate about PythonAnywhere.<br/>
+        We'll get back to you over email ASAP.
+    </div>
+    <textarea id="id_feedback_dialog_text" rows="6"></textarea>
+    <input id="id_feedback_dialog_email_address" type="text" placeholder="Email address (optional - only necessary if you would like us to contact you)"/>
+    
+    <div id="id_feedback_dialog_error" class="pa_hidden">
+        Sorry, there was an error connecting to the server. <br/>Please try again in a few moments...
+    </div>
+    <div class="dialog_buttons">
+        <img id="id_feedback_dialog_spinner" src="/static/anywhere/images/spinner-small.gif" />
+        <button class="btn btn-primary" id="id_feedback_dialog_ok_button">OK</button>
+        <button class="btn btn-default" id="id_feedback_dialog_cancel_button">Cancel</button>
+    </div>
+</div>
+<p class="form-group">
+  <input type="text" name="auth-username" maxlength="100" id="id_auth-username" autocapitalize="off" autocorrect="off" required placeholder="Username or email address" class="form-control" tabindex="1" />
+  <span class="help-block">
+    No account? <a href="/pricing/" id="id_signup_link">Sign up here!</a>
+  </span>
+</p>
+<p class="form-group">
+  <input type="password" name="auth-password" id="id_auth-password" required placeholder="Password" class="form-control" tabindex="2" />
+  <span class="help-block">
+    <a href="/password_reset/">Forgotten password?</a>
+  </span>
+</p>
+<div class="clear"></div>
+   </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+  ul {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+}
+li:before { 
+    content: "";
+    border-color: transparent #111;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+}
+
+.jumbotron{
+ height:400px;
+background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
+  background-size: cover; 
+}
+</style>
+<body>
+<div class="jumbotron">
+<div class="container">
+  <h1>What do you specialize in?</h1>
+  <ul class="list-group">
+    <li class="list-group-item"> <a href="{{ url_for('hallreg') }}">halls</a><span class="badge"></span></li>
+    <li class="list-group-item"><a href="{{ url_for('decreg') }}">Decorators</a> <span class="badge"></span></li>
+    <li class="list-group-item"><a href="{{ url_for('catreg') }}">caterers</a> <span class="badge"></span></li>
+    <li class="list-group-item"><a href="{{ url_for('partyplan') }}">party planners</a> <span class="badge"></span></li>
+
+  </ul>
+</div>
+</div>
+</body>
+</html>
