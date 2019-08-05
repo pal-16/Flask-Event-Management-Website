@@ -1,2 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+<style type="text/css">
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("http://media.bookeventz.com/html/bookeventz.com/asset/images/scrollableImageDesktop-homepage_NEWW.jpg" );
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text h1 {
+  font-size:100px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 25px;
+  color: black;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}
+
+ .bg-steel {
+  background-color: black;
+}
+
+
+
+.jumbotron{
+ height:400px;
+background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
+  background-size: cover; 
+}
+.content{
+  padding:  50px 75px 100px;
+  
+}
+.contentt{
+  padding: 25px  75px 100px;
+  
+}
+
+
+
+
+</style>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>site</title>
+    {% endif %}
+</head>
+<body class="bg">
+<div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/home">MANAGE|V|ENT</a>
+          
+            <div class="navbar-nav">
+                   <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+
+                  {% if current_user.is_authenticated %}
+             
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+             {% else %}
+               
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Organizer Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Organizer Login</a>
+             {% endif %}
+            </div>
+          
+
+        </div>
+      </nav>
+    </header>
+
+</div>
+<br>
+<br>
+
+
+
+<div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:100px"  >managE|V|ENT </h1>
+   
+  </div>
+</div>
+
+<h1 style="text-align:center;">why book with us ?</h1>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  }
+.title {
+  color: grey;
+  font-size: 18px;
+}
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+ {
+  box-sizing: border-box;
+}
+.card-container{
+    width:100%;
+    height:auto;
+    text-align:center;
+    margin:auto 0;
+    padding:50px;  
+}
+.card-container ul{
+    text-align:center;
+    margin:auto 0;
+}
+.card-container li{
+    list-style-type:none;
+    padding:.500px .500px .500px .500px;
+    float:left;
+    width:33.33%;
+    text-align:left;
+}
+    
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  }
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+ {
+  box-sizing: border-box;
+}
+
+.card-container{
+
+    width:100%;
+    height:auto;
+    text-align:center;
+    margin:auto 0;
+    padding:50px;  
+}
+.card-container ul{
+    text-align:center;
+    margin:auto 0;
+}
+.card-container li{
+    list-style-type:none;
+    padding:.500px .500px .500px .500px;
+    float:left;
+    width:33.33%;
+    text-align:left;
+}
+
+.card{
+    
+>>>>>>> 2afbd1463239e01df43d0337884083e813ec5fab
+    width:100%;
+   
+}
+.column {
+  
+  
+  padding: 5px;
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2afbd1463239e01df43d0337884083e813ec5fab
+/*.row{
+  float:left;
+  width:33.33%;
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2afbd1463239e01df43d0337884083e813ec5fab
+/* Clearfix (clear floats) 
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+*/
+  
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2afbd1463239e01df43d0337884083e813ec5fab
+}
+</style>
+</head>
+<body>
+
+
+<ul class="card-container">
+  <div class="row">
+<li><div class="card">
+  <div class="column">
+  <img src="https://previews.123rf.com/images/pxlprostudio/pxlprostudio1902/pxlprostudio190201512/116647049-wallet-icons-on-white-background-for-graphic-and-web-design-modern-simple-vector-sign-internet-conce.jpg" alt="John" style="width:100%">
+  <h1>Pocket Friendly Deals</h1>
+  <p class="title">Find deals that suit your budget with amazing deals and prices</p>
+ </div></div></li>
+  <li><div class="card">
+    <div class="column">
+    <img src="https://cdn3.vectorstock.com/i/1000x1000/75/52/location-solid-icon-map-pin-and-website-button-vector-14597552.jpg" alt="John" style="width:100%">
+  <h1>Locations Offered</h1>
+  <p class="title">Find deals that suit your budget with amazing deals and prices</p>
+  </div>
+</div>
+</li>
+  <li><div class="card">
+    <div class="column">
+    <img src="https://thumbs.dreamstime.com/z/clock-thin-line-vector-icon-clock-vector-icon-elements-mobile-concept-web-apps-thin-line-icons-website-design-140811022.jpg" alt="John" style="width:100%">
+  <h1>Saves Time</h1>
+  <p class="title">Find all that you need at this one stop</p>
+  </div>
+  </div>
+ </li>
+</div>
+</ul>
+
+</body>
+<div class ="contentt">      
+<h1>Find the ideal</h1>
+        <div class="row">
+                  <div class="col-lg-3 ">
+                     <a href="{{ url_for('hd') }}">Halls</a>
+                  </div>
+                 <div class="col-lg-3 ">
+                     <a href="{{ url_for('decd') }}">Decorator</a>
+                </div>
+                
+                 <div class="col-lg-3 ">
+                     <a href="{{ url_for('catd') }}">Caterer</a>
+                  </div>
+                
+                 <div class="col-lg-3 ">
+                     <a href="{{ url_for('pd') }}">Party Planner</a>
+                 </div>
+                
+                
+       </div>
+
+
+      
+         
+</div>
+<div class ="content">     
+ <h1>Or Find the ideal match for your query </h1>
+    
+     <div>       		     
+			<form class="form-inline" method="POST" action="{{url_for('find')}}">
+			{{ form.hidden_tag() }}
+				
+				
+		      <div class="form-group ">
+					{{ form.location.label}}
+					{% if form.location.errors %}
+						{{ form.location}}
+						<div class="invalid-feedback">
+							{% for error in form.location.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.location}}
+					{% endif %}
+				</div>
+				<div class="form-group ">
+
+					{{ form.price.label}}
+					{% if form.price.errors %}
+						{{ form.price}}
+						<div class="invalid-feedback">
+							{% for error in form.price.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.price}}
+					{% endif %}
+				</div>
+				<div class="form-group">
+
+					{{ form.requirement.label}}
+					{% if form.requirement.errors %}
+						{{ form.requirement}}
+						<div class="invalid-feedback">
+							{% for error in form.requirement.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					 {% else %}
+						{{ form.requirement}}
+					  {% endif %}
+				    </div>
+				
+				
+			   <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+	      </div>
+        
+ 	    </form>
+    </div>
+ 	</div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
+<footer class="footer-basic-centered">
+         
+          <p class="footer-links">
+            ·
+            <a href="#">MEET THE TEAM</a>
+            ·
+            <a href="#">WHAT WE DO</a>
+          </p>
+          <p class="footer-company-name">© 2019 Copyright:trinity management</p>
+        </footer>
+
+    
+</body>
+</html>
 
  
