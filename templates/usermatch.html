@@ -95,12 +95,11 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         
         <div class="container">
-          <a class="navbar-brand mr-4" href="/home">MANAGE|V|ENT</a>
+          <a class="navbar-brand mr-4" href="/home">Home</a>
           
             <div class="navbar-nav">
-                   <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-
-                  {% if current_user.is_authenticated %}
+                   
+              {% if current_user.is_authenticated %}
              
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
@@ -230,6 +229,8 @@ a {
 <<<<<<< HEAD
 =======
 
+
+
 >>>>>>> 2afbd1463239e01df43d0337884083e813ec5fab
 /*.row{
   float:left;
@@ -259,7 +260,7 @@ a {
   <h1> Find the ideal match</h1>
   
      <div>               
-      <form class="form-inline" method="POST" action="{{url_for('find')}}">
+      <form class="form-inline" method="POST" action="{{url_for('findd', flag=0)}}">
       {{ form.hidden_tag() }}
         
         
@@ -313,41 +314,44 @@ a {
       </form>
     </div>
   </div>
-
-<h1 style="text-align:center;">why book with us ?</h1>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demod">why this website</button>
+  <div id="demod" class="collapse">
+  
  
-<ul class="card-container">
-  <div class="row">
-<li><div class="card">
-  <div class="column">
-  <img src="https://previews.123rf.com/images/pxlprostudio/pxlprostudio1902/pxlprostudio190201512/116647049-wallet-icons-on-white-background-for-graphic-and-web-design-modern-simple-vector-sign-internet-conce.jpg" alt="John" style="width:100%">
-  <h1>Pocket Friendly Deals</h1>
-  <p class="title">Find deals that suit your budget with amazing deals and prices</p>
- </div></div></li>
-  <li><div class="card">
-    <div class="column">
-    <img src="https://cdn3.vectorstock.com/i/1000x1000/75/52/location-solid-icon-map-pin-and-website-button-vector-14597552.jpg" alt="John" style="width:100%">
-  <h1>Locations Offered</h1>
-  <p class="title">Find deals that suit your budget with amazing deals and prices</p>
-  </div>
-</div>
-</li>
-  <li><div class="card">
-    <div class="column">
-    <img src="https://thumbs.dreamstime.com/z/clock-thin-line-vector-icon-clock-vector-icon-elements-mobile-concept-web-apps-thin-line-icons-website-design-140811022.jpg" alt="John" style="width:100%">
-  <h1>Saves Time</h1>
-  <p class="title">Find all that you need at this one stop</p>
-  </div>
-  </div>
- </li>
-</div>
-</ul>
-
-</body>
+          <ul class="card-container">
+            <div class="row">
+          <li><div class="card">
+            <div class="column">
+            <img src="https://previews.123rf.com/images/pxlprostudio/pxlprostudio1902/pxlprostudio190201512/116647049-wallet-icons-on-white-background-for-graphic-and-web-design-modern-simple-vector-sign-internet-conce.jpg" alt="John" style="width:100%">
+            <h1>Pocket Friendly Deals</h1>
+            <p class="title">Find deals that suit your budget with amazing deals and prices</p>
+           </div></div></li>
+            <li><div class="card">
+              <div class="column">
+              <img src="https://cdn3.vectorstock.com/i/1000x1000/75/52/location-solid-icon-map-pin-and-website-button-vector-14597552.jpg" alt="John" style="width:100%">
+            <h1>Locations Offered</h1>
+            <p class="title">Find deals that suit your budget with amazing deals and prices</p>
+            </div>
+          </div>
+          </li>
+            <li><div class="card">
+                  <div class="column">
+                     <img src="https://thumbs.dreamstime.com/z/clock-thin-line-vector-icon-clock-vector-icon-elements-mobile-concept-web-apps-thin-line-icons-website-design-140811022.jpg" alt="John" style="width:100%">
+                     <h1>Saves Time</h1>
+                     <p class="title">Find all that you need at this one stop</p>
+                 </div>
+               </div>
+            </li>
+          </div>
+          </ul>
 
 </div>
-    
-<div id="id_buttons" class="details-stripe">
+<br>
+<br>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">looking for</button>
+  <div id="demo" class="collapse">
+
+        <div id="id_buttons" class="details-stripe">
 
         <div class="container">
 
@@ -399,6 +403,11 @@ a {
             </div>
         </div>
     </div>
+</div>
+<br>
+<br>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demop">How the site works?</button>
+  <div id="demop" class="collapse">
 
     <div id="id_hosting_details" class="details-stripe">
 
@@ -416,18 +425,14 @@ a {
                     </p>
                 </div>
             </div>
+      </div>
+    </div>
+  </div>
 <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/main.js"></script>
 <footer class="footer-basic-centered">
-         
-          <p class="footer-links">
-            ·
-            <a href="#">MEET THE TEAM</a>
-            ·
-            <a href="#">WHAT WE DO</a>
-          </p>
-          <p class="footer-company-name">© 2019 Copyright:trinity management</p>
+          <p class="footer-company-name">© 2019 Copyright:trinity management</p>  
         </footer>
 
 </body>

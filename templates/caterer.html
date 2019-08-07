@@ -1,149 +1,62 @@
-<html>
-
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<br>
+<br>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+.square {
+    border-radius: 5px;
+  background-color: black;
+  padding: 5px;
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
+  height: 700px;
+  width: 500px;
+  
+  margin-left: 400px;
+  margin-right: 50px;
+  
+}
+input[type=text], select {
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+  padding: 6px 20px;
+  margin: 0px ;
   display: inline-block;
-  border: none;
-  background: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-/* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for all buttons */
-button {
+input[type=submit] {
+  width: 100%;
   background-color: #4CAF50;
   color: white;
-  padding: 14px 20px;
+  padding: 14px 20px
   margin: 8px 0;
   border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-button:hover {
-  opacity:1;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
-
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
- 
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
-
-.close:hover,
-.close:focus {
-  color: #f44336;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.p{
+
+	font-color :white;
 }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
-}
+
+
 </style>
-<body>
-
-<h2>click to go ahead</h2>
-
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
-
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/catererreg">
-    <div class="container">
-      <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
-      <hr>
-      {{ form.hidden_tag() }}
-      			<div>
-					{{ form.email.label}}
-					{% if form.email.errors %}
-						{{ form.email }}
-						<div class="invalid-feedback">
-							{% for error in form.email.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.email }}
-					{% endif %}
-				</div>
-
-				<div>
-					{{ form.name.label}}
-					{% if form.name.errors %}
-						{{ form.name}}
-						<div class="invalid-feedback">
+		
+		<div class="square">
+			<form method="POST" action="/partyplan" enctype="multipart/form-data">
+			{{ form.hidden_tag() }}
+				<div class="form-group">
+					<h5><font color="white">{{form.name.label}}</font></h5>
+				    {% if form.name.errors %}
+						<input type="text" id="fname" placeholder={{form.name}}>
+                        <div class="invalid-feedback">
 							{% for error in form.name.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
@@ -152,12 +65,23 @@ hr {
 						{{ form.name}}
 					{% endif %}
 				</div>
-
-				
+				<div >
+					<h5><font color="white">{{form.email.label}}</font></h5>
+				    {% if form.email.errors %}
+						{{form.email}}
+						<div class="invalid-feedback">
+							{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.email}}
+					{% endif %}
+				</div>
 				<div>
-					{{ form.password.label}}
-					{% if form.password.errors %}
-						{{ form.password}}
+					<h5><font color="white">{{form.password.label}}</font></h5>
+				    {% if form.password.errors %}
+						<input type="text" id="fname" placeholder={{form.password}}>
 						<div class="invalid-feedback">
 							{% for error in form.password.errors %}
 								<span>{{ error }}</span>
@@ -167,11 +91,11 @@ hr {
 						{{ form.password}}
 					{% endif %}
 				</div>
-				<div>
-					{{ form.confirm_password.label}}
-					{% if form.confirm_password.errors %}
-						{{ form.confirm_password}}
-						<div class="invalid-feedback">
+				<div >
+					<h5><font color="white">{{form.confirm_password.label}}</font></h5>
+				    {% if form.confirm_password.errors %}
+						<input type="text" id="fname" placeholder={{form.confirm_password}}>
+                        <div class="invalid-feedback">
 							{% for error in form.confirm_password.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
@@ -180,24 +104,23 @@ hr {
 						{{ form.confirm_password}}
 					{% endif %}
 				</div>
-				<div>
-					{{ form.requirement.label}}
-					<br>
-					{% if form.requirement.errors %}
-						{{ form.requirement}}
+				
+				 
+				<div class="form-row">
+					<h5><font color="white">{{ form.price.label}}</font></h5>
+					{% if form.price.errors %}
+						{{ form.price}}
 						<div class="invalid-feedback">
-							{% for error in form.requirement.errors %}
+							{% for error in form.price.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.requirement}}
+						{{ form.price}}
 					{% endif %}
 				</div>
-				<br>
-				
-				<div>
-					{{ form.contact.label}}
+				<div class="form-row">
+					<h5><font color="white">{{ form.contact.label}}</font></h5>
 					{% if form.contact.errors %}
 						{{ form.price}}
 						<div class="invalid-feedback">
@@ -210,7 +133,7 @@ hr {
 					{% endif %}
 				</div>
 				<div class="form-row">
-					{{ form.details.label}}
+					<h5><font color="white">{{ form.details.label}}</font></h5>
 					{% if form.details.errors %}
 						{{ form.details}}
 						<div class="invalid-feedback">
@@ -222,40 +145,20 @@ hr {
 						{{ form.details}}
 					{% endif %}
 				</div>
-                
-				
-				<div>
-					{{ form.price.label}}
-					{% if form.price.errors %}
-						{{ form.price}}
-						<div class="invalid-feedback">
-							{% for error in form.price.errors %}
-								<span>{{ error }}</span>
-							{% endfor %}
-						</div>
-					{% else %}
-						{{ form.price}}
-					{% endif %}
-				</div>
-				
-				
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
+                <br>
 
-      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-              <div class="form-group">
+					
+			 <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
-              </div>
-      </div>
-       
-  </form>
-</div>
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href="loginn">Sign In</a>
+        </small>
+    </div>
+  </div>
 
-
-</body>
-</html>
-
+{% endblock  %}

@@ -62,14 +62,69 @@
 
        
       <h3> </h3>
-               <article class="media content-section">
-                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
-        
-               <li>  email{{ org.email }}<br>
+              <div>
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + {{org.image_file) }} style="width:500px;height:600px;">
+              </div>
+               
+            {% if org.requirement == 'h' %}
+     
+               <li>  email{{ org.email }}
+                     name{{ org.name }}<br>
                      contact{{ org.contact }}<br>
-                     price{{org.price}}
+                     details{{org.details}}<br>
+                     price{{org.price}}<br>
+                     occasion{{org.occasion}}<br>
+                     location{{org.location}}<br>
+                     accomodation{{org.accomodation}}<br>
+                     address{{org.address}}
+                    
                              </li>
-                   
+              
+
+            {% endif %} 
+            {% if org.requirement == 'p' %}
+     
+               <li>  email{{ org.email }}
+                    name{{ org.name }}<br>
+                     contact{{ org.contact }}<br>
+                     details{{org.details}}
+                     price{{org.price}}
+                     special{{org.special}}
+               </li>
+              
+
+            {% endif %} 
+
+            {% if org.requirement == 'c' %}
+     
+               <li>  email{{ org.email }}
+                     name{{ org.name }}<br>
+                     contact{{ org.contact }}<br>
+                     details{{org.details}}
+                     price{{org.price}}
+                     
+               </li>
+              
+
+            {% endif %} 
+
+            {% if org.requirement == 'd' %}
+     
+               <li>  email{{ org.email }}
+                     name{{ org.name }}<br>
+                     contact{{ org.contact }}<br>
+                     details{{org.details}}
+                     price{{org.price}}
+                     
+               </li>
+              
+
+            {% endif %} 
+
+
+
+
+
 
       <hr>
 

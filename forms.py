@@ -29,7 +29,7 @@ class hRegistrationForm(FlaskForm):
                                      validators=[EqualTo('password')])
     
     occasion  = StringField('space used for')
-    location  = SelectField('location',choices=[('a','andheri'),('b','borivali'),('c','churchgate'),('d','dadar'),('g','ghatkopar'),('j','jogeshwari'),('k','kandivali'),('l','lowerparel'),('n','nerul'),('p','parel'),('s','santacruz')])
+    location  = SelectField('location',choices=[('a','andheri'),('z','any'),('b','borivali'),('c','churchgate'),('d','dadar'),('g','ghatkopar'),('j','jogeshwari'),('k','kandivali'),('l','lowerparel'),('n','nerul'),('p','parel'),('s','santacruz')])
     price  = StringField('enter the price range(approx)', validators=[DataRequired()])
     details  = StringField('details', validators=[DataRequired()])
     accomodation = StringField('no of people accomodated')
@@ -100,7 +100,7 @@ class uRegistrationForm(FlaskForm):
    
     requirement  = SelectField('requirement',
                         choices=[('h','halls'),('d','decorators'),('c','caterers'),('p','partyplanners')])
-    location  = SelectField('location',choices=[('a','andheri'),('b','borivali'),('c','churchgate'),('d','dadar'),('g','ghatkopar'),('j','jogeshwari'),('k','kandivali'),('l','lowerparel'),('n','nerul'),('p','parel'),('s','santacruz')])
+    location  = SelectField('location',choices=[('a','andheri'),('z','any'),('b','borivali'),('c','churchgate'),('d','dadar'),('g','ghatkopar'),('j','jogeshwari'),('k','kandivali'),('l','lowerparel'),('n','nerul'),('p','parel'),('s','santacruz')])
     price  = StringField(' enter the maximum price you can go upto')
    
 
@@ -119,13 +119,16 @@ class UpdateAccountForm(FlaskForm):
     special=StringField('known for', validators=[DataRequired()])
     
     occasion  = StringField('space used for')
-    location  = SelectField('location',choices=[('a','andheri'),('b','borivali'),('c','churchgate'),('d','dadar'),('g','ghatkopar'),('j','jogeshwari'),('k','kandivali'),('l','lowerparel'),('n','nerul'),('p','parel'),('s','santacruz')])
+    location  = SelectField('location',choices=[('a','andheri'),('z','any'),('b','borivali'),('c','churchgate'),('d','dadar'),('g','ghatkopar'),('j','jogeshwari'),('k','kandivali'),('l','lowerparel'),('n','nerul'),('p','parel'),('s','santacruz')])
     price  = StringField('enter the price range(approx)', validators=[DataRequired()])
     details  = StringField('details', validators=[DataRequired()])
     accomodation = StringField('no of people accomodated')
     contact  = StringField('contact', validators=[DataRequired()])
     address  = StringField('address')
     
+    requirement  = SelectField('requirement',
+                        choices=[('h','halls'),('d','decorators'),('c','caterers'),('p','partyplanners')])
+   
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
 
     submit = SubmitField('Update')

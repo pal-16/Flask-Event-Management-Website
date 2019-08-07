@@ -19,7 +19,7 @@
 input[type=text], select {
   width: 100%;
   padding: 6px 20px;
-  margin: 8px 0;
+  margin: 0px ;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -30,7 +30,7 @@ input[type=submit] {
   width: 100%;
   background-color: #4CAF50;
   color: white;
-  padding: 14px 20px;
+  padding: 14px 20px
   margin: 8px 0;
   border: none;
   border-radius: 4px;
@@ -40,7 +40,10 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+.p{
 
+	font-color :white;
+}
 
 
 
@@ -50,7 +53,7 @@ input[type=submit]:hover {
 			<form method="POST" action="/partyplan" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
 				<div class="form-group">
-					{{ form.name.label}}
+					<h5><font color="white">{{form.name.label}}</font></h5>
 				    {% if form.name.errors %}
 						<input type="text" id="fname" placeholder={{form.name}}>
                         <div class="invalid-feedback">
@@ -63,8 +66,8 @@ input[type=submit]:hover {
 					{% endif %}
 				</div>
 				<div >
-					{{ form.email.label}}
-					{% if form.email.errors %}
+					<h5><font color="white">{{form.email.label}}</font></h5>
+				    {% if form.email.errors %}
 						{{form.email}}
 						<div class="invalid-feedback">
 							{% for error in form.email.errors %}
@@ -76,9 +79,8 @@ input[type=submit]:hover {
 					{% endif %}
 				</div>
 				<div>
-					{{ form.password.label}}
-					<br>
-					{% if form.password.errors %}
+					<h5><font color="white">{{form.password.label}}</font></h5>
+				    {% if form.password.errors %}
 						<input type="text" id="fname" placeholder={{form.password}}>
 						<div class="invalid-feedback">
 							{% for error in form.password.errors %}
@@ -90,8 +92,7 @@ input[type=submit]:hover {
 					{% endif %}
 				</div>
 				<div >
-					{{ form.confirm_password.label}}
-					<br>
+					<h5><font color="white">{{form.confirm_password.label}}</font></h5>
 				    {% if form.confirm_password.errors %}
 						<input type="text" id="fname" placeholder={{form.confirm_password}}>
                         <div class="invalid-feedback">
@@ -105,8 +106,8 @@ input[type=submit]:hover {
 				</div>
 				
 				<div>
-					{{ form.special.label}}
-					{% if form.special.errors %}
+					<h5><font color="white">{{form.special.label}}</font></h5>
+				    {% if form.special.errors %}
 						{{ form.special}}
 						<div class="invalid-feedback">
 							{% for error in form.special.errors %}
@@ -118,8 +119,8 @@ input[type=submit]:hover {
 					{% endif %}
 				</div>
 				<div>
-					{{ form.details.label}}
-					{% if form.details.errors %}
+					<h5><font color="white">{{form.details.label}}</font></h5>
+				    {% if form.details.errors %}
 						{{ form.details}}
 						<div class="invalid-feedback">
 							{% for error in form.details.errors %}
@@ -131,8 +132,8 @@ input[type=submit]:hover {
 					{% endif %}
 				</div>
 				<div>
-					{{ form.requirement.label}}
-					{% if form.requirement.errors %}
+					<h5><font color="white">{{form.requirement.label}}</font></h5>
+				    {% if form.requirement.errors %}
 						{{ form.requirement}}
 						<div class="invalid-feedback">
 							{% for error in form.requirement.errors %}
@@ -147,7 +148,7 @@ input[type=submit]:hover {
 				
 				
 				<div>
-					{{ form.price.label}}
+					<h5><font color="white">{{ form.price.label}}</font></h5>
 					{% if form.price.errors %}
 						{{ form.price}}
 						<div class="invalid-feedback">
@@ -160,7 +161,7 @@ input[type=submit]:hover {
 					{% endif %}
 				</div>
 				<div>
-					{{ form.contact.label}}
+					<h5><font color="white">{{ form.contact.label}}</font></h5>
 					{% if form.contact.errors %}
 						{{ form.contact}}
 						<div class="invalid-feedback">
@@ -176,7 +177,8 @@ input[type=submit]:hover {
 				
 				
 				
-			</fieldset>
+		
+			<br>
 			 <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>

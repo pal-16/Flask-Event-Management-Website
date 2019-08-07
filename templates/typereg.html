@@ -71,53 +71,26 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
 <br>
 <br>
 <br>
-          <h1 class="display-4" >What do you specialize in?</h1>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demoa"><h1 class="display-4" >What do you specialize in?</h1>
+          </button>
+  <div id="demoa" class="collapse">
+  
+
             
                                         
-      </div>
+      
           
-             <div class="row">
-                  <div class="col-lg-4 ">
-                     <a href="{{ url_for('hallreg') }}">halls</a>
-                
-                  <img src="https://www.labanquets.com/galleries/glenoaks/Glenoaks%20Ballroom%20by%20LA%20Banquets%20Wedding%20Venuesin%20Los%20Angeles%20and%20Banquet%20Halls%20in%20Glendale%20CA(05).jpg"  width="350" height="263" class="img-thumbnail"
-                  >
-              
-                      </div>
-             <div class="col-lg-4 ">
-              <a href="{{ url_for('decreg') }}">decorators</a>
-                
-                  <img src="https://auraeventmanagers.com/images/services/international.jpg"  width="350" height="263" class="img-thumbnail"
-                  >
-                
-              </div>
-               <div class="col-lg-4 ">
-              <a href="{{ url_for('catererreg') }}">caterors</a>
-                
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpQPTaJbvKP7oxxr4DHEXNhG8Wr2qnyf3zVWZwwyW7B7QxS6bopw"  width="350" height="263" class="img-thumbnail"
-                  >
-                
-              </div>
-            
-               <div class="col-lg-4 ">
-              <a href="{{ url_for('partyplan') }}">party planners</a>
-                
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpQPTaJbvKP7oxxr4DHEXNhG8Wr2qnyf3zVWZwwyW7B7QxS6bopw"  width="350" height="263" class="img-thumbnail"
-                  >
-                
-              </div>
+              <ul class="list-group">
+    <li class="list-group-item"> <a href="{{ url_for('hallreg') }}">halls</a><span class="badge"></span></li>
+    <li class="list-group-item"><a href="{{ url_for('decreg') }}">Decorators</a> <span class="badge"></span></li>
+    <li class="list-group-item"><a href="{{ url_for('catererreg') }}">caterers</a> <span class="badge"></span></li>
+    <li class="list-group-item"><a href="{{ url_for('partyplan') }}">party planners</a> <span class="badge"></span></li>
 
-               <div class="col-lg-4 ">
-              <a href="{{ url_for('partyhosts') }}">event hosts</a>
-                
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpQPTaJbvKP7oxxr4DHEXNhG8Wr2qnyf3zVWZwwyW7B7QxS6bopw"  width="350" height="263" class="img-thumbnail"
-                  >
-                
-              </div>
+  </ul>
                                                                                                
       
-</div>
 
+</div>
 
 </body>
 

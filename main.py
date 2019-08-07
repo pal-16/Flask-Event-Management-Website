@@ -22,15 +22,6 @@ def create_session(config):
     session._model_changes = {}
     return session 
     
-@app.route("/")
-@app.route("/home",methods=['GET', 'POST'])
-def home():
-    form = uRegistrationForm()
-    if form.validate_on_submit():
-        print("success1")
-        print("user details stored") # this is not getting printed, for sure
-        return redirect(url_for('find'))
-    return render_template('usermatch.html', title='home', form=form)
 
 @app.route("/detail/<int:org_id>")
 def org(org_id):
@@ -76,32 +67,67 @@ def find_test(org_price):
    print(org_price)
    return render_template('reverse.html',title='match',org_price=org_price)
   
-@app.route("/find_test1")
-def find_test1():
-    sorted_list=[]
-    for org in org :
-        print(org.price)
-        sorted_list.append(org.price)
+
+
+@app.route("/find/<int:flag>")
+def find_test1(flag):
+    flag=1
+    #form = uRegistrationForm()
+    user = User.query.all()
+    user = user[0]
+    if user.location.data:  
     
-    print(sorted_list)
-    print("success 2")
-    print("validated")
-    return render_template('test.html',title='match',sorted_list=sorted_list)
+      
+        print(user.requirement.data+" "+user.location.data)
+        org= Org.query.filter_by(location=user.location.data,requirement=user.requirement.data).all()
+        print("happening")
+        print(org)
+    else :
+        org= Org.query.filter_by(requirement=user.requirement.data).all()
+                
+    return render_template('detail.html', title='Find', org=org, form=form,flag=flag)
+    #org = Org.query.get_or_404(org_id)
+    #sorted_list=[]
+    #for org in org :
+    #    print(org.price)
+     #   sorted_list.append(org.price)
+    #sorted(sorted_list, reverse=True)
+    
+    #print("validated")
+    #return redirect(url_for('find'))
+    #return render_template('detail.html',title='match',flag=flag)
+
+@app.route("/")
+@app.route("/home",methods=['GET', 'POST'])
+def home():
+    flag=0
+    form = uRegistrationForm()
+    if form.validate_on_submit():
+        print("success1")
+        print("user details stored") # this is not getting printed, for sure
+        findd(flag)
+    return render_template('usermatch.html', title='home', form=form,flag=flag)
 
    
-@app.route('/find',methods=['GET', 'POST'])
-def find():
+@app.route("/findd/<int:flag>",methods=['GET', 'POST'])
+def findd(flag):
     form = uRegistrationForm()
-    if form.location.data=='':    
+    print(form)
+    if form.location.data:  
+    
+      
         print(form.requirement.data+" "+form.location.data)
-        orgList= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
+        org= Org.query.filter_by(location=form.location.data,requirement=form.requirement.data).all()
+        user=User(location=form.location.data,requirement=form.requirement.data,price=form.price.data)
+        db.session.add(user)
+        db.session.commit
         print("happening")
-        print(orgList)
+        print(org)
     else :
-        orgList= Org.query.filter_by(requirement=form.requirement.data).all()
+        org= Org.query.filter_by(requirement=form.requirement.data).all()
                 
-    return render_template('detail.html', title='Find', orgList=orgList, form=form)
-
+    return render_template('detail.html', title='Find', org=org, form=form,flag=flag)
+'''
  
 @app.route('/findd',methods=['GET', 'POST'])
 def findd():
@@ -121,7 +147,7 @@ def findd():
                               print(user)
                       
                               print('in filter')
-    return render_template('detail.html', title='Find', org=org, form=form)
+    return render_template('detail.html', title='Find', org=org, form=form)'''
 
 @app.route('/dynamic',methods=['GET', 'POST'])
 def dynamic():
@@ -286,9 +312,16 @@ def account():
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
-        form.name.data = current_user.name
-        form.email.data = current_user.email
-        form.price.data= current_user.price
+            form.name.data = current_user.name
+            form.email.data = current_user.email
+            form.price.data= current_user.price
+            form.details.data = current_user.details
+            form.email.data = current_user.email
+            form.occasion.data=current_user.occasion
+            form.location.data=current_user.location
+            form.contact.data=current_user.contact
+            form.special.data=current_user.special
+            form.accomodation.data=current_user.accomodation
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
