@@ -50,7 +50,7 @@ input[type=submit]:hover {
 </style>
 		
 		<div class="square">
-			<form method="POST" action="/partyplan" enctype="multipart/form-data">
+			<form method="POST" action="/catererreg" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
 				<div class="form-group">
 					<h5><font color="white">{{form.name.label}}</font></h5>
@@ -145,6 +145,20 @@ input[type=submit]:hover {
 						{{ form.details}}
 					{% endif %}
 				</div>
+				<div class="form-row">
+					<h5><font color="white">{{ form.requirement.label}}</font></h5>
+					{% if form.requirement.errors %}
+						{{ form.requirement}}
+						<div class="invalid-feedback">
+							{% for error in form.requirement.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.requirement}}
+					{% endif %}
+				</div>
+                
                 <br>
 
 

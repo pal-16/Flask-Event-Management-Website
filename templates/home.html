@@ -100,11 +100,15 @@ background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1
             <div class="navbar-nav">
                    
               {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
+                <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
              
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
              {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('feedback') }}">feedback</a>
+                <a class="nav-item nav-link" href="{{ url_for('about') }}">about us</a>
+                <a class="nav-item nav-link" href="{{ url_for('contact') }}">contact us</a>
+             
                 <a class="nav-item nav-link" href="{{ url_for('register') }}">Organizer Register</a>
                 <a class="nav-item nav-link" href="{{ url_for('login') }}">Organizer Login</a>
              {% endif %}
@@ -214,7 +218,11 @@ a {
     width:33.33%;
     text-align:left;
 }
+.content{
 
+  margin-left: 100px;
+  
+}
 .card{
     
 >>>>>>> 2afbd1463239e01df43d0337884083e813ec5fab
@@ -225,6 +233,13 @@ a {
   
   
   padding: 5px;
+}
+.rectangle{
+  border-radius: 5px;
+  background-color: black;
+  padding: 5px;
+
+  width:950px;
 }
 <<<<<<< HEAD
 =======
@@ -259,13 +274,13 @@ a {
 <div class ="content">     
   <h1> Find the ideal match</h1>
   
-     <div>               
+     <div class ="rectangle">               
       <form class="form-inline" method="POST" action="{{url_for('findd', flag=0)}}">
       {{ form.hidden_tag() }}
         
         
           <div class="form-group ">
-          {{ form.location.label}}
+          <h5><font color="white">{{form.location.label}}</font></h5>
           {% if form.location.errors %}
             {{ form.location}}
             <div class="invalid-feedback">
@@ -277,9 +292,10 @@ a {
             {{ form.location}}
           {% endif %}
         </div>
+        <br>
         <div class="form-group ">
 
-          {{ form.price.label}}
+          <h5><font color="white">{{form.price.label}}</font></h5>
           {% if form.price.errors %}
             {{ form.price}}
             <div class="invalid-feedback">
@@ -291,9 +307,10 @@ a {
             {{ form.price}}
           {% endif %}
         </div>
+        <h5>   </h5>
         <div class="form-group">
 
-          {{ form.requirement.label}}
+          <h5><font color="white">{{form.requirement.label}}</font></h5>
           {% if form.requirement.errors %}
             {{ form.requirement}}
             <div class="invalid-feedback">
@@ -357,46 +374,32 @@ a {
 
             <div class="row">
                 <div class="col-md-3">
-                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;"  src="/static/glyphicons/glyphicons_232_cloud.png">
                     <h3><a href="{{ url_for('hd') }}">Halls</a></h3>
                     <p>
-                        Just write your application. No need to configure or maintain
-                        a web server &mdash; everything is set up and ready
-                        to go.
+                        Search for halls in your desired locality and in your budget! 
                     </p>
                     <p><a id="id_hosting_button" href="#id_hosting_details">More &raquo;</a></p>
                 </div>
 
                 <div class="col-md-3">
-                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/glyphicons/glyphicons_138_computer_proces.png">
                     <h3><a href="{{ url_for('decd') }}">Decorators</a></h3>
                     <p>
-                        Take your development environment with you! If you have a browser
-                        and an Internet connection, you've got everything you need.
-                    </p>
+                      All decorators that match up your criteria! </p>
                     <p><a id="id_develop_anywhere_button" href="#id_develop_anywhere_details">More &raquo;</a></p>
                 </div>
 
                 <div class="col-md-3">
-                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/glyphicons/glyphicons_064_lightbulb.png">
                     <h3><a href="{{ url_for('catd') }}">caterers</a></h3>
                     <p>
-                        PythonAnywhere is a fully-fledged Python environment, ready
-                        to go, for students and teachers &mdash; concentrate on teaching,
-                        not on installation hassles.
-                    </p>
+                       CATERERS that match your venue and price!</p>
                     <p><a id="id_education_button" href="#id_education_details">More &raquo;</a></p>
                 </div>
 
 
                 <div class="col-md-3">
-                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/glyphicons/glyphicons_043_group.png">
                     <h3><a href="{{ url_for('pd') }}">partyplanners</a></h3>
                     <p>
-                        Need help with PythonAnywhere?  If you get in touch,
-                        you can talk directly with the development team.  Help
-                        for developers, from developers.
-                    </p>
+                      If you are looking for party planners under your budget go nowwhere else! </p>
                     <p><a id="id_support_button" href="#id_support_details">More &raquo;</a></p>
                 </div>
 
@@ -431,10 +434,6 @@ a {
 <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/main.js"></script>
-<footer class="footer-basic-centered">
-          <p class="footer-company-name">© 2019 Copyright:trinity management</p>  
-        </footer>
-
 </body>
 </html>
 
