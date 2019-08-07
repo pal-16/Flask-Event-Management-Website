@@ -302,27 +302,21 @@ def catererreg():
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-
+        print("hi")
         if form.picture.data:
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
+            print("hello")
         current_user.name = form.name.data
         current_user.email = form.email.data
         db.session.commit()
+        print("yes")
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
             form.name.data = current_user.name
             form.email.data = current_user.email
-            form.price.data= current_user.price
-            form.details.data = current_user.details
-            form.email.data = current_user.email
-            form.occasion.data=current_user.occasion
-            form.location.data=current_user.location
-            form.contact.data=current_user.contact
-            form.special.data=current_user.special
-            form.accomodation.data=current_user.accomodation
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+            image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
 
