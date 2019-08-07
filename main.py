@@ -106,7 +106,7 @@ def home():
         print("success1")
         print("user details stored") # this is not getting printed, for sure
         findd(flag)
-    return render_template('usermatch.html', title='home', form=form,flag=flag)
+    return render_template('home.html', title='home', form=form,flag=flag)
 
    
 @app.route("/findd/<int:flag>",methods=['GET', 'POST'])
@@ -211,7 +211,7 @@ def decd():
 @app.route("/catd")
 def catd():
     org = Org.query.filter_by(requirement='c').all()
-    return render_template('flashhall.html', org=org)
+    return render_template('flashCaterer.html', org=org)
 
 @app.route("/pd")
 def pd():
@@ -282,11 +282,8 @@ def decreg():
 @app.route("/catererreg", methods=['GET', 'POST'])
 def catererreg():
     form = cRegistrationForm()
-    print("hi palak going well")
     if form.validate_on_submit():
         print("validated")
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        
         org = Org(name=form.name.data,email=form.email.data,password=form.password.data,requirement='c',price=form.price.data,details=form.details.data,contact=form.contact.data)
         db.session.add(org)
         db.session.commit()
