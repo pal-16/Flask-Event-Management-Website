@@ -284,7 +284,7 @@ def catererreg():
     form = cRegistrationForm()
     if form.validate_on_submit():
         print("validated")
-        org = Org(name=form.name.data,email=form.email.data,password=form.password.data,requirement='c',price=form.price.data,details=form.details.data,contact=form.contact.data)
+        org = Org(name=form.name.data,email=form.email.data,password=form.password.data,location='z',requirement='c',price=form.price.data,details=form.details.data,contact=form.contact.data)
         db.session.add(org)
         db.session.commit()
         print("validated")

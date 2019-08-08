@@ -7,8 +7,9 @@
    <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
 
-   <li>  email{{ org.email }}<br>
-         contact{{ org.contact }}<br>
-         price{{org.price}}
-                 </li>
-   <hr>
+   <li>
+		email{{ org.email }}<br>
+		contact{{ org.contact }}<br>
+		price{{org.price}}
+	</li><hr>
+{% endblock content %}
