@@ -3,7 +3,7 @@
 <br>
 <br>
     {% for org in org %}
-          
+<br>
                
               <div class="row">
                 <div class="col-lg-4">
@@ -16,6 +16,5 @@
                   <a href="{{ url_for('org', org_id=org.id) }}"  class="btn btn-primary">further details</a>
                 </div>
               </div>
-              <br>
           {% endfor %}
 {% endblock content %}

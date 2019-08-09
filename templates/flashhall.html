@@ -3,10 +3,7 @@
 <br>
 <br>
 <br>
-    {% for org in org %}
-    
-          
-               
+    {% for org in org %}  
               <div class="row">
                 <div class="col-lg-4">
                   <img class="w3-round" src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}">
@@ -20,5 +17,5 @@
               </div>
               <br>      
 
-     {% endfor %}
+     {% endfor %}z
 {% endblock content %}

@@ -37,7 +37,7 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         
         <div class="container">
-          <a class="navbar-brand mr-4" href="/home">event management</a>
+          <a class="navbar-brand mr-4" href="/home">MANAGE|V|ENT</a>
           
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
@@ -46,7 +46,7 @@
              {% else %}
                
 
-              <a class="nav-item nav-link" href="{{ url_for('register') }}">organizerRegister</a>
+              <!--a class="nav-item nav-link" href="{{ url_for('register') }}">organizerRegister</a-->
                <a class="nav-item nav-link" href="{{ url_for('login') }}">organizerlogin</a>
              {% endif %}
             </div>
@@ -67,41 +67,39 @@
               </div>
                
             {% if org.requirement == 'h' %}
-     
-               <li>  email{{ org.email }}
-                     name{{ org.name }}<br>
-                     contact{{ org.contact }}<br>
-                     details{{org.details}}<br>
-                     price{{org.price}}<br>
-                     occasion{{org.occasion}}<br>
-                     location{{org.location}}<br>
-                     accomodation{{org.accomodation}}<br>
-                     address{{org.address}}
-                    
-                             </li>
+            <li>
+                Email: {{ org.email }}
+                Name: {{ org.name }}<br>
+                Contact details: {{ org.contact }}<br>
+                Details: {{org.details}}<br>
+                Maximum Price: {{org.price}}<br>
+                Occasions we host: {{org.occasion}}<br>
+                Location: {{org.location}}<br>
+                Accomodation capacity: {{org.accomodation}}<br>
+                Address: {{org.address}}
+            </li>
               
-
-            {% endif %} 
+            {% endif %}
             {% if org.requirement == 'p' %}
-     
-               <li>  email{{ org.email }}
-                    name{{ org.name }}<br>
-                     contact{{ org.contact }}<br>
-                     details{{org.details}}
-                     price{{org.price}}
-                     special{{org.special}}
-               </li>
-              
+            <li>
+                Email: {{ org.email }}
+                Name: {{ org.name }}<br>
+                Contact details: {{ org.contact }}<br>
+                Details: {{org.details}}<br>
+                Maximum Price: {{org.price}}<br>
+                What makes us special: {{org.special}}
+
+            </li>
 
             {% endif %} 
 
             {% if org.requirement == 'c' %}
      
-               <li>  email{{ org.email }}
-                     name{{ org.name }}<br>
-                     contact{{ org.contact }}<br>
-                     details{{org.details}}
-                     price{{org.price}}
+               <li>  Email: {{ org.email }}
+                     Name: {{ org.name }}<br>
+                     Contact details: {{ org.contact }}<br>
+                     Details: {{org.details}}
+                     Maximum Price: {{org.price}}
                      
                </li>
               
@@ -110,11 +108,11 @@
 
             {% if org.requirement == 'd' %}
      
-               <li>  email{{ org.email }}
-                     name{{ org.name }}<br>
-                     contact{{ org.contact }}<br>
-                     details{{org.details}}
-                     price{{org.price}}
+               <li>  Email: {{ org.email }}
+                     Name: {{ org.name }}<br>
+                     Contact details: {{ org.contact }}<br>
+                     Details: {{org.details}}
+                     Maximum Price: {{org.price}}
                      
                </li>
               

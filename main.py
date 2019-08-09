@@ -26,50 +26,37 @@ def create_session(config):
 @app.route("/detail/<int:org_id>")
 def org(org_id):
     org = Org.query.get_or_404(org_id)
-    return render_template('fd.html', title='full details', org=org)
+    return render_template('completeDetails.html', title='full details', org=org)
 
-
-
-
+'''
 @app.route("/display")
 def feedback():
     return render_template('page.html')
 
-
-
-
-
 @app.route("/partyhosts")
 def partyhosts():
     return render_template('partyhosts.html')
-
+'''
 
 @app.route("/about")
 def about():
     return render_template('about.html')
 
-@app.route("/contact")  
-def contact():
-    return render_template('contact.html')
-
 @app.route('/afterreg')
 def afterreg():
-   return render_template('afterreg.html')
+   return render_template('afterRegistration.html')
 
-
-@app.route('/flas')
+@app.route('/flashMessage')
 def flas():
-   return render_template('flas.html')
+   return render_template('flashMessage.html')
 
 @app.route("/find_test/<org_price>")
 def find_test(org_price):
    org_price= sorted(org_price, key=lambda org: org_price) 
    print(org_price)
    return render_template('reverse.html',title='match',org_price=org_price)
-  
 
-
-@app.route("/find/<int:flag>")
+@app.route("/filteredDetails/")
 def find_test1(flag):
     flag=1
     #form = uRegistrationForm()
@@ -80,12 +67,12 @@ def find_test1(flag):
       
         print(user.requirement.data+" "+user.location.data)
         org= Org.query.filter_by(location=user.location.data,requirement=user.requirement.data).all()
-        print("happening")
+        #print("happening")
         print(org)
     else :
         org= Org.query.filter_by(requirement=user.requirement.data).all()
                 
-    return render_template('detail.html', title='Find', org=org, form=form,flag=flag)
+    return render_template('filteredDetails.html', title='Find', org=org, form=form,flag=flag)
     #org = Org.query.get_or_404(org_id)
     #sorted_list=[]
     #for org in org :
@@ -109,7 +96,7 @@ def home():
     return render_template('home.html', title='home', form=form,flag=flag)
 
    
-@app.route("/findd/<int:flag>",methods=['GET', 'POST'])
+@app.route("/your_match_is_here/<int:flag>",methods=['GET', 'POST'])
 def findd(flag):
     form = uRegistrationForm()
     print(form)
@@ -121,35 +108,36 @@ def findd(flag):
         user=User(location=form.location.data,requirement=form.requirement.data,price=form.price.data)
         db.session.add(user)
         db.session.commit
-        print("happening")
+        #print("happening")
         print(org)
     else :
         org= Org.query.filter_by(requirement=form.requirement.data).all()
                 
-    return render_template('detail.html', title='Find', org=org, form=form,flag=flag)
-'''
- 
+    return render_template('filteredDetails.html', title='Find', org=org, form=form,flag=flag)
+
+''' 
 @app.route('/findd',methods=['GET', 'POST'])
 def findd():
     form = dynamicForm()
     if form.location.data:    
        org= Org.query.filter_by(location=form.location.data,price=form.price.data).all()
-    else :
+    else:
         org= Org.query.filter_by(price=form.requirement.data).all()
     if org:                     
-                              print("success2")
-                              user = User.query.filter_by(id=current_user.id).first()
-                              user.location = form.location.data
-                              user.price = form.price.data
-                              db.session.commit()
-                      
-                              print("User")
-                              print(user)
-                      
-                              print('in filter')
-    return render_template('detail.html', title='Find', org=org, form=form)'''
+        print("success2")
+        user = User.query.filter_by(id=current_user.id).first()
+        user.location = form.location.data
+        user.price = form.price.data
+        db.session.commit()
+
+        print("User")
+        print(user)
+
+        print('in filter')
+    return render_template('detail.html', title='Find', org=org, form=form)
 
 @app.route('/dynamic',methods=['GET', 'POST'])
+
 def dynamic():
     form = uRegistrationForm()
     if form.location.data:    
@@ -161,7 +149,7 @@ def dynamic():
         orgList= Org.query.filter_by(requirement=form.requirement.data).all()
                 
     return render_template('dynamic.html', title='Find', orgList=orgList, form=form)
-
+'''
   
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -169,7 +157,7 @@ def login():
     if form.validate_on_submit():
         org =Org.query.filter_by(email=form.email.data,password=form.password.data).first()
         if org :
-            print("palak")
+            #print("palak")
             login_user(org, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('account'))
