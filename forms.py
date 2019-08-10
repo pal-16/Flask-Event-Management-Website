@@ -62,12 +62,7 @@ class dRegistrationForm(FlaskForm):
                         validators=[DataRequired()],choices=[('d','decorators')])
  
     submit = SubmitField('Sign Up')
-    def validate_email(self, email):
-        if email.data != current_user.email:
-            user = User.query.filter_by(email=email.data).first()
-            if user:
-                raise ValidationError('That email is taken. Please choose a different one.')
-
+   
 
 class cRegistrationForm(FlaskForm):
     name = StringField('Name:', validators=[DataRequired()])
@@ -103,12 +98,7 @@ class planRegistrationForm(FlaskForm):
     contact  = StringField('Contact:', validators=[DataRequired()])
    
     submit = SubmitField('Sign Up')
-    def validate_email(self, email):
-        if email.data != current_user.email:
-            user = Org.query.filter_by(email=email.data).first()
-            if user:
-                raise ValidationError('That email is taken. Please choose a different one.')
-
+    
    
 class uRegistrationForm(FlaskForm):
     requirement  = SelectField('Requirement:',

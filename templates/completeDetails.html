@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -22,8 +24,18 @@
 
 .bg{
   background-image: url("https://ak6.picdn.net/shutterstock/videos/9983156/thumb/1.jpg");
-  
+  background-size: cover;
  }
+
+.adjust{
+
+
+  border-radius: 5px;
+  height:300px;
+width:500px;
+margin-left: 400px;
+margin right:50px;
+}
 </style>
     {% if title %}
         <title>{{ title }}</title>
@@ -46,7 +58,7 @@
              {% else %}
                
 
-              <!--a class="nav-item nav-link" href="{{ url_for('register') }}">organizerRegister</a-->
+              <a class="nav-item nav-link" href="{{ url_for('register') }}">List with us </a>
                <a class="nav-item nav-link" href="{{ url_for('login') }}">organizerlogin</a>
              {% endif %}
             </div>
@@ -56,34 +68,36 @@
       </nav>
     </header>
     <br>
-    <br>
-    <br>
-
-
-       
-      <h3> </h3>
-              <div>
-                <img src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}" width="100px" height="42px">
+              <div class="adjust">
+                <img src="{{ url_for('static', filename='profile_pics/' + org.image_file) }}" width="500px" height="300px">
               </div>
+{% if org.requirement == 'h' %}
+     
                
-            {% if org.requirement == 'h' %}
+            <ul>
+             <i class="glyphicon glyphicon-envelope"></i>
+   <font face="Times New Roman" size="5">Email:</font>{{ org.email }}<br>
+            <i class="glyphicon glyphicon-user"></i>
+
+           <font face="Times New Roman" size="5">Name:</font>{{ org.name }}<br>
+             <i class="glyphicon glyphicon-user"></i>
+          <font face="Times New Roman" size="5">Contact us at:</font>{{ org.contact }}<br>
+              <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>   <font face="Times New Roman" size="5">Details:</font>{{ org.details }}<br>
+             <span class="glyphicon glyphicon-pushpin
+" aria-hidden="true"></span>  <font face="Times New Roman" size="5">Price:</font>{{ org.price }}<br>
+               <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>   <font face="Times New Roman" size="5">Occasions held:</font>{{ org.occasion}}<br>
+             
+              <span class=" glyphicon glyphicon-pushpin
+" aria-hidden="true"></span>   <font face="Times New Roman" size="5">Accomodation:</font>{{ org.accomodation }}<br>
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+           <font face="Times New Roman" size="5">Address:</font>{{ org.address }}<br>
+              </ul>
+{% endif %}  
+{% if org.requirement == 'd' %}
+
             <li>
-                Email: {{ org.email }}
-                Name: {{ org.name }}<br>
-                Contact details: {{ org.contact }}<br>
-                Details: {{org.details}}<br>
-                Maximum Price: {{org.price}}<br>
-                Occasions we host: {{org.occasion}}<br>
-                Location: {{org.location}}<br>
-                Accomodation capacity: {{org.accomodation}}<br>
-                Address: {{org.address}}
-            </li>
-              
-            {% endif %}
-            {% if org.requirement == 'p' %}
-            <li>
-                Email: {{ org.email }}
-                Name: {{ org.name }}<br>
+                Email: {{ org.email }}<br>
+                Name:{{org.name}}<br>
                 Contact details: {{ org.contact }}<br>
                 Details: {{org.details}}<br>
                 Maximum Price: {{org.price}}<br>
@@ -91,12 +105,12 @@
 
             </li>
 
-            {% endif %} 
+{% endif %} 
 
-            {% if org.requirement == 'c' %}
+{% if org.requirement == 'c' %}
      
-               <li>  Email: {{ org.email }}
-                     Name: {{ org.name }}<br>
+               <li>  Email: {{ org.email }}<br>
+                     Name:{{org.name}}<br>
                      Contact details: {{ org.contact }}<br>
                      Details: {{org.details}}
                      Maximum Price: {{org.price}}
@@ -104,12 +118,12 @@
                </li>
               
 
-            {% endif %} 
+{% endif %} 
 
-            {% if org.requirement == 'd' %}
+{% if org.requirement == 'p' %}
      
-               <li>  Email: {{ org.email }}
-                     Name: {{ org.name }}<br>
+               <li>  Email: {{ org.email }}<br>
+                     Name:{{org.name}}<br>
                      Contact details: {{ org.contact }}<br>
                      Details: {{org.details}}
                      Maximum Price: {{org.price}}
@@ -117,7 +131,7 @@
                </li>
               
 
-            {% endif %} 
+{% endif %} 
 
 
 
@@ -127,6 +141,5 @@
       <hr>
 
      
-</div>
-</body> 
-</html>
+
+</body></html>
