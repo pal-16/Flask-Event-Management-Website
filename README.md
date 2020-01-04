@@ -1,4 +1,4 @@
-MANAGING EVENT MANAGEMENT WEBSITE
+MANAGING EVENT MANAGEMENT 
 
 
 Summary :
@@ -14,7 +14,12 @@ Softwares Used Front End involves: CSS JavaScript Bootstrap
                
 GITHUB Repository: The given site can be found at: https://github.com/pal-16/event-management-website
 
-The directory consists of:  .git•  Event (The root folder)• o Contains all python files. o main.py contains the routes and the functions o forms.py contains forms meant for the user, Hall Providers, Catering Service providers, Decorators, Party Planners and Event Hosts. o models.py contains all the variables meant to be stored in the database.  Templates• o Consists of all HTML templates. o These are rendered by the routes defined.  static• o Includes images (folder), JavaScript files, CSS files.  
+The directory consists of: 
+.git•  Event (The root folder)• o Contains all python files. 
+main.py contains the routes and the functions o forms.py contains forms meant for the user, Hall Providers, Catering Service providers,     Decorators, Party Planners and Event Hosts.
+models.py contains all the variables meant to be stored in the database. 
+Templates•  Consists of all HTML templates. o These are rendered by the routes defined. 
+static•  Includes images (folder), JavaScript files, CSS files.  
 
 
 Future Scope The site hasn’t been hosted on a server yet. Also, there can be a few more features that can be added to the present version, which might include checking the availability of the particular organizer/ entity in real time and also the possibility of booking them through the site itself.
