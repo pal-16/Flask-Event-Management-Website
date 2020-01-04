@@ -23,3 +23,6 @@ static•  Includes images (folder), JavaScript files, CSS files.
 
 
 Future Scope The site hasn’t been hosted on a server yet. Also, there can be a few more features that can be added to the present version, which might include checking the availability of the particular organizer/ entity in real time and also the possibility of booking them through the site itself.
+
+
+MY OTHER PROJECTS CAN BE FOUND AT https://github.com/pal-16
